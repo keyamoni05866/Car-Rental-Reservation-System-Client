@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.primary-color {
+  color: #1572d3;
+}
+.primary-bg-color {
+  background-color: #1572d3;
+}
+
+.secondary-color {
+  color: #051c34;
+}
+.secondary-bg-color {
+  background-color: #051c34;
+}
+
+.custom-background {
+  background: linear-gradient(120deg, #577492, #2a75c5);
+}
