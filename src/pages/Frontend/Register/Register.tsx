@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import car1 from "../../../assets/LoginRegisterPhotos/register.avif";
 import { useForm } from "react-hook-form";
 import { useRegisterUserMutation } from "../../../Redux/features/auth/authApi";
 import { toast } from "sonner";
 import { TResponse } from "../../../Types";
+import swal from "sweetalert";
 
 type TSignUpFormData = {
   name: string;
@@ -24,6 +25,7 @@ const Register = () => {
   } = useForm<TSignUpFormData>();
   const password = watch("password");
   const [registerUser] = useRegisterUserMutation();
+  const navigate = useNavigate();
   const handleSignUp = async (data: TSignUpFormData) => {
     const toastId = toast.loading("Creating....");
     // console.log(data);
@@ -40,6 +42,12 @@ const Register = () => {
         toast.error(res.error?.data?.message, { id: toastId });
       } else {
         toast.success(res.data?.message, { id: toastId });
+        swal(
+          "Registration Completed!",
+          "Please Login to Access Dashboard and Booking Page",
+          "success"
+        );
+        navigate("/login");
       }
     } catch (err) {
       toast.error("Something Went Wrong!!");

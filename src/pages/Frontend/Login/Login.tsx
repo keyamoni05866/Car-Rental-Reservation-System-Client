@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../../../assets/LoginRegisterPhotos/login.jpg";
 import { useForm } from "react-hook-form";
 import { useLoginUserMutation } from "../../../Redux/features/auth/authApi";
@@ -20,15 +20,19 @@ const Login = () => {
   } = useForm<LoginFormData>();
   const [loginUser] = useLoginUserMutation();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const handleLogin = async (data: LoginFormData) => {
     // console.log(data);
     const toastId = toast.loading("Sign In", { duration: 1000 });
+
     try {
       const res = (await loginUser(data).unwrap()) as TResponse<any>;
       toast.success("logging In", { id: toastId, duration: 1000 });
       const userInfo = res?.data.user;
       const token = res?.data.token;
       dispatch(signUser({ userInfo, token }));
+
+      navigate(`/${userInfo.role}/dashboard`);
     } catch (error) {
       toast.error("Something Went Wrong", { id: toastId, duration: 1000 });
     }

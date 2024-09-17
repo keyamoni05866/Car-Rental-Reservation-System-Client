@@ -4,6 +4,12 @@ import Main from "../Layout/Main";
 import Register from "../pages/Frontend/Register/Register";
 import Login from "../pages/Frontend/Login/Login";
 
+import { routeGenerator } from "../pages/Dashboard/utils/routesGenerator";
+import DashboardLayout from "../Layout/DashboardLayout";
+import { adminPaths } from "./admin.routes";
+import ProtectedRoute from "./ProtectedRoute";
+import { userPaths } from "./user.route";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +28,24 @@ const router = createBrowserRouter([
         element: <Login />,
       },
     ],
+  },
+  {
+    path: "/admin",
+    element: (
+      <ProtectedRoute>
+        <DashboardLayout />
+      </ProtectedRoute>
+    ),
+    children: routeGenerator(adminPaths),
+  },
+  {
+    path: "/user",
+    element: (
+      <ProtectedRoute>
+        <DashboardLayout />
+      </ProtectedRoute>
+    ),
+    children: routeGenerator(userPaths),
   },
 ]);
 
