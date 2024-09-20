@@ -1,6 +1,4 @@
 import { Layout, Menu } from "antd";
-
-import React from "react";
 import { sidebarItemsGenerator } from "../pages/Dashboard/utils/sidebarItemsGenerator";
 import { adminPaths } from "../Router/admin.routes";
 import { useAppSelector } from "../Redux/hook";

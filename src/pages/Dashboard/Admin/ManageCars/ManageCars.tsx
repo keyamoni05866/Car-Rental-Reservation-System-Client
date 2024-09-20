@@ -1,9 +1,12 @@
-import React from "react";
+import CarTables from "./CarTables";
+import CreateCarModal from "./CreateCarModal";
 
 const ManageCars = () => {
   return (
-    <div>
-      <h2>Manage Cars</h2>
+    <div className="lg:mx-9">
+      <CreateCarModal />
+      <div className="divider"></div>
+      <CarTables />
     </div>
   );
 };

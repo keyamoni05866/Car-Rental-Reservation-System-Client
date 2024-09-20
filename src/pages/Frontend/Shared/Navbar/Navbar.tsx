@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../../../Redux/hook";
+import { currentUser } from "../../../../Redux/features/auth/authSlice";
 
 const Navbar = () => {
+  const userInfo = useAppSelector(currentUser);
+  // console.log(userInfo?.role);
   return (
     <>
       <div className="navbar">
@@ -67,7 +71,7 @@ const Navbar = () => {
               <Link to="/booking">Booking</Link>
             </li>
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to={`/${userInfo?.role}/dashboard`}>Dashboard</Link>
             </li>
           </ul>
         </div>
