@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import { useGetCarsQuery } from "../../../../Redux/api/CarApi/carApi";
 import { TCar } from "../../../../Types";
+import CarUpdateModal from "./CarUpdate";
+import { useForm } from "react-hook-form";
 
 const CarTables = () => {
   const { data: cars } = useGetCarsQuery({});
-
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TCar>();
   return (
     <table className="table-xs md:table-md lg:table lg:mx-10  ">
       {/* head */}
@@ -42,16 +48,16 @@ const CarTables = () => {
               <td>
                 <Link
                   to={`/products/${car._id}`}
-                  className="me-2 btn btn-outline btn-success mb-2  btn-xs lg:btn-sm"
+                  className="me-2 btn btn-outline  mb-2  btn-xs lg:btn-sm"
                 >
                   Details
                 </Link>
 
                 <Link
-                  to={`/updateProduct/${car._id}`}
+                  to={`/admin/update/${car._id}`}
                   className="me-2 mb-2 btn btn-xs lg:btn-sm"
                 >
-                  Update{" "}
+                  Update
                 </Link>
 
                 <button

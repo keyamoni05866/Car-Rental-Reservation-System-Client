@@ -17,6 +17,7 @@ const CreateCarModal = () => {
     // console.log(data);
     const formData = new FormData();
     formData.append("image", data.image[0]);
+    // console.log(formData);
     fetch(img_hosting_url, {
       method: "POST",
       body: formData,
@@ -94,7 +95,7 @@ const CreateCarModal = () => {
                   <input
                     type="text"
                     {...register("name")}
-                    placeholder="Product Name"
+                    placeholder="Car Name"
                     className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                   />
                 </div>

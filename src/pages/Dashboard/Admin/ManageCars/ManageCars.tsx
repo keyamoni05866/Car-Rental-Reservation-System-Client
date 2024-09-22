@@ -1,4 +1,5 @@
 import CarTables from "./CarTables";
+
 import CreateCarModal from "./CreateCarModal";
 
 const ManageCars = () => {

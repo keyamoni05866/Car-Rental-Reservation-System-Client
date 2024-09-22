@@ -1,4 +1,5 @@
 import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
+import CarUpdate from "../pages/Dashboard/Admin/ManageCars/CarUpdate";
 import ManageCars from "../pages/Dashboard/Admin/ManageCars/ManageCars";
 import UserManagement from "../pages/Dashboard/Admin/UserManagement/UserManagement";
 export const adminPaths = [
@@ -12,6 +13,11 @@ export const adminPaths = [
     path: "car-management",
     element: <ManageCars />,
   },
+  {
+    path: "update/:id",
+    element: <CarUpdate />,
+  },
+
   {
     name: "User Management",
     path: "user-management",
