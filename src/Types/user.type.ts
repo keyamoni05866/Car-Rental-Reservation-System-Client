@@ -7,5 +7,5 @@ export type TUser = {
   phone?: string;
   address?: string;
   termsConditionAccepted: boolean;
-  isBlocked?: boolean;
+  status: "active" | "blocked";
 };
