@@ -1,16 +1,30 @@
 import { Link } from "react-router-dom";
-import { useGetCarsQuery } from "../../../../Redux/api/CarApi/carApi";
+import {
+  useDeleteCarMutation,
+  useGetCarsQuery,
+} from "../../../../Redux/api/CarApi/carApi";
 import { TCar } from "../../../../Types";
-import CarUpdateModal from "./CarUpdate";
-import { useForm } from "react-hook-form";
+import swal from "sweetalert";
+import { toast } from "sonner";
 
 const CarTables = () => {
   const { data: cars } = useGetCarsQuery({});
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<TCar>();
+  const [deleteCar] = useDeleteCarMutation();
+
+  const handleDelete = (id: string) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, You will not be able to recover this",
+      icon: "warning",
+      buttons: [true, "OK"],
+      dangerMode: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        const res = await deleteCar(id);
+        toast.success(res.data?.message);
+      }
+    });
+  };
   return (
     <table className="table-xs md:table-md lg:table lg:mx-10  ">
       {/* head */}
@@ -61,7 +75,7 @@ const CarTables = () => {
                 </Link>
 
                 <button
-                  //   onClick={() => handleDelete(product._id)}
+                  onClick={() => handleDelete(car._id)}
                   className="btn text-white bg-[#ff0000] hover:bg-[#c51313] mb-2 btn-xs lg:btn-sm"
                 >
                   Delete

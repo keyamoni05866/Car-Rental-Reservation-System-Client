@@ -1,12 +1,12 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { TCar, TResponse, TUpdateCar } from "../../../../Types";
+import { TCar, TResponse } from "../../../../Types";
 import { useParams } from "react-router-dom";
 import {
   useGetCarsQuery,
   useUpdateCarMutation,
 } from "../../../../Redux/api/CarApi/carApi";
 import { toast } from "sonner";
-import { useState } from "react";
+
 const img_hosting_token = import.meta.env.VITE_image_upload_token;
 const CarUpdate = () => {
   const { id } = useParams();
@@ -15,92 +15,6 @@ const CarUpdate = () => {
   const car = cars?.data?.find((item: TCar) => item._id === id);
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const { register, handleSubmit } = useForm<TCar>();
-  const [image, setImage] = useState<File | null>(null);
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-  };
-
-  // const handleUpdate: SubmitHandler<TCar> = async (data) => {
-  //   console.log(data);
-
-  //   if (data.image && data.image.length > 0) {
-  //     const formData = new FormData();
-  //     formData.append("image", data.image[0]);
-  //     fetch(img_hosting_url, {
-  //       method: "PUT",
-  //       body: formData,
-  //     })
-  //       .then((res) => res.json())
-  //       .then(async (imgResponse) => {
-  //         const toastId = toast.loading("Updating");
-  //         const imgURL = imgResponse.data.display_url;
-
-  //         if (typeof data.features === "string") {
-  //           data.features = (data?.features as string)
-  //             ?.split(",")
-  //             .map((feature: string) => feature.trim());
-  //         }
-
-  //         const carData = {
-  //           _id: id,
-  //           name: data.name,
-  //           description: data.description,
-  //           color: data.color,
-  //           image: imgURL,
-  //           model: data.model,
-  //           year: data.year,
-  //           isElectric: data.isElectric,
-  //           carType: data.carType,
-  //           features: data.features,
-  //           pricePerHour: Number(data.pricePerHour),
-  //         };
-  //         try {
-  //           const res = (await updateCar(carData)) as TResponse<any>;
-  //           if (res.error) {
-  //             toast.error(res.error?.data?.message, { id: toastId });
-  //           } else {
-  //             toast.success(res.data?.message, { id: toastId });
-  //           }
-  //         } catch (error) {
-  //           toast.error("Something Went Wrong!!");
-  //         }
-  //       });
-  //   } else {
-  //     const toastId = toast.loading("Updating");
-
-  //     if (typeof data.features === "string") {
-  //       data.features = (data?.features as string)
-  //         ?.split(",")
-  //         .map((feature: string) => feature.trim());
-  //     }
-
-  //     const carData = {
-  //       _id: id,
-  //       name: data.name,
-  //       description: data.description,
-  //       color: data.color,
-  //       model: data.model,
-  //       year: data.year,
-  //       isElectric: data.isElectric,
-  //       carType: data.carType,
-  //       features: data.features,
-  //       pricePerHour: Number(data.pricePerHour),
-  //     };
-  //     try {
-  //       const res = (await updateCar(carData)) as TResponse<any>;
-  //       if (res.error) {
-  //         toast.error(res.error?.data?.message, { id: toastId });
-  //       } else {
-  //         toast.success(res.data?.message, { id: toastId });
-  //       }
-  //     } catch (error) {
-  //       toast.error("Something Went Wrong!!");
-  //     }
-  //   }
-  // };
 
   const handleUpdate: SubmitHandler<TCar> = async (data) => {
     // if (data.image) {
@@ -123,7 +37,6 @@ const CarUpdate = () => {
 
             const carData = {
               _id: id,
-
               image: imgURL,
             };
 
@@ -171,93 +84,7 @@ const CarUpdate = () => {
         toast.error("Something Went Wrong!!");
       }
     }
-
-    // }
   };
-
-  // const handleUpdate: SubmitHandler<TCar> = async (data) => {
-  //   let imageUrl = car?.image;
-  //   console.log(imageUrl);
-  //   // if (image) {
-  //   const formData = new FormData();
-
-  //   formData.append("image", data.image);
-  //   console.log(formData);
-  //   // console.log();
-  //   // fetch(img_hosting_url, {
-  //   //   method: "POST",
-  //   //   body: formData,
-  //   // })
-  //   //   .then((res) => res.json())
-  //   //   .then(async (imgResponse) => {
-  //   // const toastId = toast.loading("Updating");
-  //   // imageUrl = imgResponse.data.display_url;
-
-  //   // if (typeof data.features === "string") {
-  //   //   data.features = (data?.features as string)
-  //   //     ?.split(",")
-  //   //     .map((feature: string) => feature.trim());
-  //   // }
-
-  //   // const carData = {
-  //   //   _id: id,
-  //   //   name: data.name,
-  //   //   description: data.description,
-  //   //   color: data.color,
-  //   //   model: data.model,
-  //   //   year: data.year,
-  //   //   isElectric: data.isElectric,
-  //   //   carType: data.carType,
-  //   //   features: data.features,
-  //   //   pricePerHour: Number(data.pricePerHour),
-  //   //   image: imageUrl,
-  //   // };
-  //   // try {
-  //   //   const res = (await updateCar(carData)) as TResponse<any>;
-  //   //   if (res.error) {
-  //   //     toast.error(res.error?.data?.message, { id: toastId });
-  //   //   } else {
-  //   //     toast.success(res.data?.message, { id: toastId });
-  //   //   }
-  //   // } catch (error) {
-  //   //   toast.error("Something Went Wrong!!");
-  //   // }
-  //   // });
-  //   // }
-  //   // } else {
-  //   //   const toastId = toast.loading("Updating");
-
-  //   //   if (typeof data.features === "string") {
-  //   //     data.features = (data?.features as string)
-  //   //       ?.split(",")
-  //   //       .map((feature: string) => feature.trim());
-  //   //   }
-
-  //   //   const carData = {
-  //   //     _id: id,
-  //   //     name: data.name,
-  //   //     description: data.description,
-  //   //     color: data.color,
-  //   //     model: data.model,
-  //   //     year: data.year,
-  //   //     isElectric: data.isElectric,
-  //   //     carType: data.carType,
-  //   //     features: data.features,
-  //   //     pricePerHour: Number(data.pricePerHour),
-  //   //   };
-  //   //   console.log(carData);
-  //   //   try {
-  //   //     const res = (await updateCar(carData)) as TResponse<any>;
-  //   //     if (res.error) {
-  //   //       toast.error(res.error?.data?.message, { id: toastId });
-  //   //     } else {
-  //   //       toast.success(res.data?.message, { id: toastId });
-  //   //     }
-  //   //   } catch (error) {
-  //   //     toast.error("Something Went Wrong!!");
-  //   //   }
-  //   // }
-  // };
 
   return (
     <div className="lg:mx-[70px]">
