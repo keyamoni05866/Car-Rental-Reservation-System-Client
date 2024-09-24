@@ -16,13 +16,32 @@ const userApi = baseApi.injectEndpoints({
       },
     }),
 
+    createUser: builder.mutation({
+      query: (body) => ({
+        url: "/users/create-user",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["users"],
+    }),
+
     updateUser: builder.mutation({
-      query: ({ id, data }) => {
+      query: (data) => {
         console.log(data);
         return {
-          url: `/users/${id}`,
+          url: `/users/${data._id}`,
           method: "PATCH",
           body: data,
+        };
+      },
+      invalidatesTags: ["users"],
+    }),
+
+    deleteAUser: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/users/${id}`,
+          method: "DELETE",
         };
       },
       invalidatesTags: ["users"],
@@ -30,4 +49,9 @@ const userApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetUsersQuery, useUpdateUserMutation } = userApi;
+export const {
+  useGetUsersQuery,
+  useUpdateUserMutation,
+  useCreateUserMutation,
+  useDeleteAUserMutation,
+} = userApi;

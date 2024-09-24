@@ -5,16 +5,17 @@ import {
 } from "../../../../Redux/api/UserApi/UserApi";
 import { TResponse, TUser } from "../../../../Types";
 
-const UserManagement = () => {
+const RoleManagement = () => {
   const { data: users } = useGetUsersQuery({});
   const [updateUser] = useUpdateUserMutation();
 
   const handleRoleChange = async (id: string, role: "admin" | "user") => {
     const data = {
+      _id: id,
       role: role,
     };
     try {
-      const res = (await updateUser({ id, data })) as TResponse<any>;
+      const res = (await updateUser(data)) as TResponse<any>;
       if (res.error) {
         toast.error(res.error?.data?.message);
       } else {
@@ -27,15 +28,17 @@ const UserManagement = () => {
 
   const handleActivate = async (id: string) => {
     const data = {
+      _id: id,
       status: "active",
     };
-    updateUser({ id, data });
+    updateUser(data);
   };
   const handleBlock = async (id: string) => {
     const data = {
+      _id: id,
       status: "blocked",
     };
-    updateUser({ id, data });
+    updateUser(data);
   };
 
   return (
@@ -114,9 +117,6 @@ const UserManagement = () => {
                     </button>
                   )}
                 </div>
-                <button className="btn text-white  mb-2 btn-xs lg:btn-sm">
-                  Delete
-                </button>
               </td>
             </tr>
           ))
@@ -132,4 +132,4 @@ const UserManagement = () => {
   );
 };
 
-export default UserManagement;
+export default RoleManagement;

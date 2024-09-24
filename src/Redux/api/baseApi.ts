@@ -30,12 +30,8 @@ const BaseQueryWithToken: BaseQueryFn<
     const result = await baseQuery(args, api, extraOptions);
 
     if (result.error) {
-      if (result.error.status === 401) {
-        toast.error("Your session has expired. Please log in again.");
-      } else if (result.error.status === 404) {
+      if (result.error.status === 404) {
         toast.error("Resource not found.");
-      } else {
-        toast.error("An error occurred.");
       }
     }
 

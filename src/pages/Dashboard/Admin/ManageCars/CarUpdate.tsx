@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { TCar, TResponse } from "../../../../Types";
+import { TCar, TResponse, TUpdateCar } from "../../../../Types";
 import { useParams } from "react-router-dom";
 import {
   useGetCarsQuery,
@@ -16,7 +16,7 @@ const CarUpdate = () => {
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const { register, handleSubmit } = useForm<TCar>();
 
-  const handleUpdate: SubmitHandler<TCar> = async (data) => {
+  const handleUpdate: SubmitHandler<TUpdateCar> = async (data) => {
     // if (data.image) {
 
     if (data.image && data.image.length > 0) {
@@ -34,9 +34,24 @@ const CarUpdate = () => {
           if (imgResponse.data && imgResponse.data.display_url) {
             const imgURL = imgResponse.data.display_url;
             console.log(imgURL);
+            if (typeof data.features === "string") {
+              data.features = (data.features as string)
+                ?.split(",")
+                .map((feature: string) => feature.trim());
+            }
 
             const carData = {
               _id: id,
+              name: data.name,
+              description: data.description,
+              color: data.color,
+              model: data.model,
+              year: data.year,
+              isElectric: data.isElectric,
+              carType: data.carType,
+              features: data.features,
+              pricePerHour: Number(data.pricePerHour),
+
               image: imgURL,
             };
 

@@ -15,7 +15,7 @@ const carApi = baseApi.injectEndpoints({
         };
       },
     }),
-    addCar: builder.mutation<TUpdateCar, Partial<TUpdateCar>>({
+    addCar: builder.mutation({
       query: (body) => ({
         url: "/cars/create-car",
         method: "POST",

@@ -1,7 +1,10 @@
 import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
 import CarUpdate from "../pages/Dashboard/Admin/ManageCars/CarUpdate";
 import ManageCars from "../pages/Dashboard/Admin/ManageCars/ManageCars";
-import UserManagement from "../pages/Dashboard/Admin/UserManagement/UserManagement";
+import ManageUser from "../pages/Dashboard/Admin/UserManagement/ManageUser/ManageUser";
+import UpdateUser from "../pages/Dashboard/Admin/UserManagement/ManageUser/UpdateUser";
+import RoleManagement from "../pages/Dashboard/Admin/UserManagement/RoleManagement";
+
 export const adminPaths = [
   {
     name: "Admin Dashboard",
@@ -14,13 +17,29 @@ export const adminPaths = [
     element: <ManageCars />,
   },
   {
+    name: "",
     path: "update/:id",
     element: <CarUpdate />,
   },
 
   {
     name: "User Management",
-    path: "user-management",
-    element: <UserManagement />,
+    children: [
+      {
+        name: "Role Management",
+        path: "role-management",
+        element: <RoleManagement />,
+      },
+      {
+        name: "Manage User",
+        path: "user-management",
+        element: <ManageUser />,
+      },
+      {
+        name: "",
+        path: "updateUser/:id",
+        element: <UpdateUser />,
+      },
+    ],
   },
 ];
