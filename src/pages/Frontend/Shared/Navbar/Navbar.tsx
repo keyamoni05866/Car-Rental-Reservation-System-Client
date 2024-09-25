@@ -70,9 +70,20 @@ const Navbar = () => {
             <li>
               <Link to="/booking">Booking</Link>
             </li>
-            <li>
-              <Link to={`/${userInfo?.role}/dashboard`}>Dashboard</Link>
-            </li>
+
+            {userInfo ? (
+              <li>
+                {userInfo.role === "admin" ? (
+                  <Link to={`/${userInfo?.role}/dashboard`}>Dashboard</Link>
+                ) : (
+                  <Link to={`/${userInfo?.role}/profile-management`}>
+                    Dashboard
+                  </Link>
+                )}
+              </li>
+            ) : (
+              <></>
+            )}
           </ul>
         </div>
         <div className="navbar-end ">

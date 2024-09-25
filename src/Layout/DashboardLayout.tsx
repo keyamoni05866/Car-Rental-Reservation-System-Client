@@ -1,10 +1,10 @@
-import { Button, Layout, Menu, theme } from "antd";
+import { Button, Layout, theme } from "antd";
 import DashboardSidebar from "./DashboardSidebar";
 import { Outlet } from "react-router-dom";
 import { useAppDispatch } from "../Redux/hook";
 import { logOutUser } from "../Redux/features/auth/authSlice";
 
-const { Header, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 
 const DashboardLayout = () => {
   const {

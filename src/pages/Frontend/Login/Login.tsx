@@ -24,17 +24,23 @@ const Login = () => {
   const handleLogin = async (data: LoginFormData) => {
     // console.log(data);
     const toastId = toast.loading("Sign In", { duration: 1000 });
-
     try {
       const res = (await loginUser(data).unwrap()) as TResponse<any>;
-      toast.success("logging In", { id: toastId, duration: 1000 });
+      toast.success("logged In", { id: toastId, duration: 1000 });
       const userInfo = res?.data.user;
       const token = res?.data.token;
       dispatch(signUser({ userInfo, token }));
 
-      navigate(`/${userInfo.role}/dashboard`);
-    } catch (error) {
-      toast.error("Something Went Wrong", { id: toastId, duration: 1000 });
+      if (userInfo.role === "admin") {
+        navigate(`/${userInfo.role}/dashboard`);
+      } else {
+        navigate(`/${userInfo.role}/profile-management`);
+      }
+    } catch (err) {
+      toast.error(
+        "Something Went Wrong!! Please use valid email or provide correct password",
+        { id: toastId, duration: 3000 }
+      );
     }
   };
   return (
