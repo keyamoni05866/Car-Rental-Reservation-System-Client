@@ -29,7 +29,7 @@ const userApi = baseApi.injectEndpoints({
       query: (data) => {
         console.log(data);
         return {
-          url: `/users/${data._id}`,
+          url: `/users/${data.id}`,
           method: "PATCH",
           body: data,
         };

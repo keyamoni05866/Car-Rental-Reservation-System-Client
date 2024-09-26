@@ -1,12 +1,13 @@
-import { TCar, TResponseRedux, TUpdateCar } from "../../../Types";
+import { TCar, TResponseRedux } from "../../../Types";
 import { baseApi } from "../../api/baseApi";
 
 const carApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getCars: builder.query({
-      query: () => ({
+      query: (params) => ({
         url: "/cars",
         method: "GET",
+        params,
       }),
       providesTags: ["cars"],
       transformResponse: (response: TResponseRedux<TCar[]>) => {

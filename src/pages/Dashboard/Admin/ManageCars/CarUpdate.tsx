@@ -10,11 +10,19 @@ import { toast } from "sonner";
 const img_hosting_token = import.meta.env.VITE_image_upload_token;
 const CarUpdate = () => {
   const { id } = useParams();
-  const { data: cars } = useGetCarsQuery({});
+  const { data: cars, isLoading } = useGetCarsQuery({});
   const [updateCar] = useUpdateCarMutation();
   const car = cars?.data?.find((item: TCar) => item._id === id);
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const { register, handleSubmit } = useForm<TCar>();
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <span className="loading loading-spinner loading-xs"></span>
+      </div>
+    );
+  }
 
   const handleUpdate: SubmitHandler<TUpdateCar> = async (data) => {
     // if (data.image) {
@@ -29,17 +37,16 @@ const CarUpdate = () => {
       })
         .then((res) => res.json())
         .then(async (imgResponse) => {
-          const toastId = toast.loading("Updating");
-
           if (imgResponse.data && imgResponse.data.display_url) {
             const imgURL = imgResponse.data.display_url;
-            console.log(imgURL);
+            // console.log(imgURL);
+
             if (typeof data.features === "string") {
               data.features = (data.features as string)
                 ?.split(",")
                 .map((feature: string) => feature.trim());
             }
-
+            const toastId = toast.loading("Updating");
             const carData = {
               _id: id,
               name: data.name,
@@ -51,14 +58,13 @@ const CarUpdate = () => {
               carType: data.carType,
               features: data.features,
               pricePerHour: Number(data.pricePerHour),
-
               image: imgURL,
             };
 
             try {
               const res = (await updateCar(carData)) as TResponse<any>;
               if (res.error) {
-                toast.error(res.error?.data?.message, { id: toastId });
+                toast.error(res.error?.data?.message);
               } else {
                 toast.success(res.data?.message, { id: toastId });
               }

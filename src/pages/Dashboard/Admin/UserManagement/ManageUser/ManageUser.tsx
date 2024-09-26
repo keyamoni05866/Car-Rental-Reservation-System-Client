@@ -27,6 +27,7 @@ const ManageUser = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<TAddUserFormData>();
   const password = watch("password");
@@ -46,6 +47,7 @@ const ManageUser = () => {
         toast.error(res.error?.data?.message, { id: toastId });
       } else {
         toast.success(res.data?.message, { id: toastId });
+        reset();
       }
     } catch (err) {
       toast.error("Something Went Wrong!!");

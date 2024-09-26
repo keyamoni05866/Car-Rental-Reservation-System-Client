@@ -11,7 +11,7 @@ const RoleManagement = () => {
 
   const handleRoleChange = async (id: string, role: "admin" | "user") => {
     const data = {
-      _id: id,
+      id: id,
       role: role,
     };
     try {
@@ -28,14 +28,14 @@ const RoleManagement = () => {
 
   const handleActivate = async (id: string) => {
     const data = {
-      _id: id,
+      id: id,
       status: "active",
     };
     updateUser(data);
   };
   const handleBlock = async (id: string) => {
     const data = {
-      _id: id,
+      id: id,
       status: "blocked",
     };
     updateUser(data);

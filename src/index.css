@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Integral CF;
+}
+
 .primary-color {
   color: #1572d3;
 }
@@ -16,6 +23,73 @@
   background-color: #051c34;
 }
 
-.custom-background {
+/* .custom-background {
   background: linear-gradient(120deg, #577492, #2a75c5);
+} */
+
+.custom-btn {
+  padding: 9px 30px;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  color: rgb(243, 243, 243);
+  background-color: #1572d3;
+  border: none;
+  border-radius: 20px;
+  font: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.custom-btn:hover {
+  background-color: #155ba7;
+}
+.custom-outline-btn {
+  padding: 8px 26px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  color: #051c34;
+  background-color: transparent;
+  border: 1px solid #97d8c4;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.custom-outline-btn:hover {
+  color: white;
+  background-color: #051c34;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 300px) and (max-width: 768px) {
+  .custom-btn {
+    padding: 8px 13px;
+    font-size: 12px;
+  }
+  .custom-outline-btn {
+    padding: 8px 13px;
+    font-size: 12px;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

@@ -19,45 +19,39 @@ export type TUpdateUserFormData = {
 
 const UpdateUser = () => {
   const { id } = useParams();
-  const { data: users } = useGetUsersQuery({});
+  const { data: users, isLoading } = useGetUsersQuery({});
   const [updateUser] = useUpdateUserMutation();
   const user = users?.data?.find((item: TUser) => item._id === id);
-  const { register, handleSubmit } = useForm<TUpdateUserFormData>();
-
+  const { register, handleSubmit, reset } = useForm<TUpdateUserFormData>();
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
   const handleUpdate: SubmitHandler<TUpdateUserFormData> = async (data) => {
     if (data.newPassword && data.oldPassword) {
-      if (data.oldPassword === user?.password) {
-        const userData = {
-          _id: id,
-          password: data.newPassword,
-          name: data.name,
-          email: data.email,
-          role: data.role,
-          phone: data.phone,
-          termsConditionAccepted: data.termsConditionAccepted,
-        };
-        console.log(userData);
-        try {
-          const res = (await updateUser(userData)) as TResponse<any>;
-          if (res.error) {
-            toast.error(res.error?.data?.message);
-          } else {
-            toast.success(res.data?.message);
-          }
-        } catch (error) {
-          toast.error("Something Went Wrong!!");
+      const userData = {
+        id: id,
+        ...data,
+      };
+      console.log(userData);
+      try {
+        const res = (await updateUser(userData)) as TResponse<any>;
+        if (res.error) {
+          toast.error(res.error?.data?.message);
+        } else {
+          toast.success(res.data?.message);
+          reset();
         }
-      } else {
-        toast.error("Password doesn't match");
+      } catch (error) {
+        toast.error("Something Went Wrong!!");
       }
     } else {
       const userData = {
-        _id: id,
-        name: data.name,
-        email: data.email,
-        role: data.role,
-        phone: data.phone,
-        termsConditionAccepted: data.termsConditionAccepted,
+        id: id,
+        ...data,
       };
       console.log(userData);
       try {

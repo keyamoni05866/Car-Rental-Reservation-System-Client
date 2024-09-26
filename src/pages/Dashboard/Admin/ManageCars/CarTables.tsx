@@ -7,6 +7,8 @@ import { TCar } from "../../../../Types";
 import swal from "sweetalert";
 import { toast } from "sonner";
 
+import { useState } from "react";
+
 const CarTables = () => {
   const { data: cars } = useGetCarsQuery({});
   const [deleteCar] = useDeleteCarMutation();
@@ -73,7 +75,6 @@ const CarTables = () => {
                 >
                   Update
                 </Link>
-
                 <button
                   onClick={() => handleDelete(car._id)}
                   className="btn text-white bg-[#ff0000] hover:bg-[#c51313] mb-2 btn-xs lg:btn-sm"

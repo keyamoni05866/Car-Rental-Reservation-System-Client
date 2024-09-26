@@ -25,7 +25,8 @@ export const authSlice = createSlice({
       state.user = null;
     },
     updateUserProfile: (state, action) => {
-      const updatedUserInfo = action.payload;
+      const { updatedUserInfo } = action.payload;
+
       state.user = { ...state.user, ...updatedUserInfo };
     },
   },

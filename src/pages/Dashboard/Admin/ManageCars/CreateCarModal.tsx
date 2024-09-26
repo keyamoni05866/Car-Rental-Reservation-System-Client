@@ -8,6 +8,7 @@ const CreateCarModal = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<TCar>();
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
@@ -37,9 +38,13 @@ const CreateCarModal = () => {
         try {
           const res = (await addCar({ ...data })) as TResponse<any>;
           if (res.error) {
-            toast.error(res.error?.data?.message, { id: toastId });
+            toast.error(res.error?.data?.message, {
+              id: toastId,
+              duration: 1000,
+            });
           } else {
-            toast.success(res.data?.message, { id: toastId });
+            toast.success(res.data?.message, { id: toastId, duration: 3000 });
+            reset();
           }
         } catch (error) {
           toast.error("Something Went Wrong!!");

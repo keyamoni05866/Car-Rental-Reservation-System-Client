@@ -9,6 +9,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import { adminPaths } from "./admin.routes";
 import ProtectedRoute from "./ProtectedRoute";
 import { userPaths } from "./user.route";
+import Cars from "../pages/Frontend/Cars/Cars";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/cars",
+        element: <Cars />,
       },
       {
         path: "/register",

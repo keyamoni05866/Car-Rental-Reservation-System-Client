@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../../../Redux/hook";
 import { currentUser } from "../../../../Redux/features/auth/authSlice";
-
+import logo from "../../../../assets/logo.png";
 const Navbar = () => {
   const userInfo = useAppSelector(currentUser);
   // console.log(userInfo?.role);
   return (
     <>
-      <div className="navbar">
+      <div className="navbar lg:px-16">
         <div className="navbar-start  ">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -46,8 +46,8 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <div className=" flex">
-            <img src={"logo"} alt="" className="w-10   rounded-xl" />
+          <div className=" flex items-center mt-2">
+            <img src={logo} alt="" className="size-10   rounded-xl" />
             <h5 className="text-xl  ms-1  font-semibold  primary-color uppercase">
               RentCars
             </h5>
@@ -90,10 +90,7 @@ const Navbar = () => {
           <Link to="/login" className=" text-[15px] font-medium mt-1  me-5 ">
             Sign In
           </Link>
-          <Link
-            to="/register"
-            className=" mt-2 px-auto  pb-2 px-5 pt-1  rounded-lg font-medium primary-bg-color text-[15px] text-white hover:bg-[#051c34] "
-          >
+          <Link to="/register" className="custom-btn mt-1 ">
             Sign up
           </Link>
         </div>
