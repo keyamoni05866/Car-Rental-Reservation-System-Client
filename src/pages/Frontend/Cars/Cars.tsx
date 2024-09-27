@@ -8,12 +8,21 @@ const Cars = () => {
   const [color, setColor] = useState("All");
   const [features, setFeatures] = useState("All");
   const [priceRange, setPriceRange] = useState<number | "">("");
-  const { data: cars } = useGetCarsQuery({
+  const { data: cars, isLoading } = useGetCarsQuery({
     carType,
     color,
     priceRange,
     features,
   });
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
+
   const handleForClear = () => {
     setCartype("All");
     setColor("All");
@@ -22,10 +31,43 @@ const Cars = () => {
   };
 
   return (
-    <div className="lg:px-20 min-h-screen mb-20">
-      <div>
-        <div className="lg:w-[80%] flex justify-end gap-2">
-          <div className="lg:w-[20%]">
+    <div className=" min-h-screen mb-20 mt-10 px-3 ">
+      <div className="lg:flex justify-between w-full gap-x-6">
+        <div className="lg:w-[20%] lg:px-0 px-3 ">
+          <div className="flex  justify-between mb-5 mt-5">
+            <h4>Filter</h4>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
+              />
+            </svg>
+          </div>
+          <div className="mb-5">
+            <label>Price Range: {priceRange}</label>
+            <input
+              type="range"
+              min={20}
+              value={priceRange}
+              onChange={(e) =>
+                setPriceRange(e.target.value ? Number(e.target.value) : "")
+              }
+              className="range"
+            />
+            <div className="flex justify-between">
+              <h4>20</h4>
+              <h4>100</h4>
+            </div>
+          </div>
+          <div className="mb-3">
             <select
               className=" select select-ghost w-full max-w-xs"
               value={carType}
@@ -40,9 +82,9 @@ const Cars = () => {
               <option value="Coupe">Coupe</option>
             </select>
           </div>
-          <div className="lg:w-[20%]">
+          <div className="mb-3">
             <select
-              className=" select select-bordered w-full max-w-xs"
+              className=" select select-ghost w-full max-w-xs"
               value={color}
               onChange={(e) => setColor(e.target.value)}
             >
@@ -54,9 +96,9 @@ const Cars = () => {
               <option value="White">White</option>
             </select>
           </div>
-          <div className="lg:w-[20%]">
+          <div className="mb-5">
             <select
-              className=" select select-bordered w-full max-w-xs"
+              className=" select select-ghost w-full max-w-xs"
               value={features}
               onChange={(e) => setFeatures(e.target.value)}
             >
@@ -70,94 +112,85 @@ const Cars = () => {
             </select>
           </div>
 
-          <div className="lg:w-[20%]">
-            <label>Price Range: {priceRange}</label>
-            <input
-              type="range"
-              value={priceRange}
-              onChange={(e) =>
-                setPriceRange(e.target.value ? Number(e.target.value) : "")
-              }
-              className="range"
-            />
-            <div className="flex justify-between">
-              <h4>20</h4>
-              <h4>100</h4>
-            </div>
-          </div>
-          <button className=" " onClick={handleForClear}>
-            Reset
-          </button>
-        </div>
-      </div>
-      <div className="mt-5  card-grid   gap-6 ">
-        {cars?.data && cars?.data?.length > 0 ? (
-          cars?.data?.map((car: TCar) => (
-            <div
-              key={car._id}
-              className="card card-compact bg-base-100 max-w-[360px] shadow-md rounded-[3px] mx-auto"
+          <div className="flex justify-end mt-9 me-3">
+            <button
+              className=" custom-outline-btn w-[60%] !font-bold "
+              onClick={handleForClear}
             >
-              <div className="bg-base-200 w-[360px]  h-[200px] flex justify-center items-center">
-                <img
-                  src={car.image}
-                  alt="Product Picture"
-                  className=" w-full h-full "
-                />
-              </div>
-              <div className=" my-2 ">
-                <div className="mx-7">
-                  <h3 className="card-title">{car?.name}</h3>
-                  <p className="text-md">
-                    {car?.description.substring(0, 100)}...
-                    <Link
-                      to={`/cars/${car._id}`}
-                      className="primary-color hover:underline"
-                    >
-                      see more
-                    </Link>
-                  </p>
-                  <div className="divider mb-0 mt-0"></div>
-                  <div className="flex justify-between">
-                    {" "}
-                    <h4 className=" text-lg ">Price:</h4>{" "}
-                    <div className="flex">
-                      <h4 className="font-semibold text-lg ">
-                        {" "}
-                        ${car?.pricePerHour}
-                      </h4>
-                      <h4 className="text-lg ms-1">/hour</h4>
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <div className="lg:mt-5  mt-16 card-grid    gap-4 lg:w-[80%]">
+          {cars?.data && cars?.data?.length > 0 ? (
+            cars?.data?.map((car: TCar) => (
+              <div
+                key={car._id}
+                className="card card-compact bg-base-100 max-w-[320px] shadow-md rounded-[3px] mx-auto"
+              >
+                <div className="bg-base-200 w-[320px]  h-[200px] flex justify-center items-center">
+                  <img
+                    src={car.image}
+                    alt="Product Picture"
+                    className=" w-full h-full "
+                  />
+                </div>
+                <div className=" my-2 ">
+                  <div className="mx-7">
+                    <h3 className="card-title">{car?.name}</h3>
+                    <p className="text-md">
+                      {car?.description.substring(0, 100)}...
+                      <Link
+                        to={`/cars/${car._id}`}
+                        className="primary-color hover:underline"
+                      >
+                        see more
+                      </Link>
+                    </p>
+                    <div className="divider mb-0 mt-0"></div>
+                    <div className="flex justify-between">
+                      {" "}
+                      <h4 className=" text-lg ">Price:</h4>{" "}
+                      <div className="flex">
+                        <h4 className="font-semibold text-lg ">
+                          {" "}
+                          ${car?.pricePerHour}
+                        </h4>
+                        <h4 className="text-lg ms-1">/hour</h4>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="card-actions w-full mt-4 mb-4 items-center justify-center">
-                  <Link
-                    to={`/cars/${car._id}`}
-                    className="custom-btn flex w-full mx-5   items-center justify-center"
-                  >
-                    Details
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.8}
-                      stroke="currentColor"
-                      className="size-[20px] ms-[8px] mt-[2px]"
+                  <div className="card-actions w-full mt-4 mb-4 items-center justify-center">
+                    <Link
+                      to={`/cars/${car._id}`}
+                      className="custom-btn flex w-full mx-5  items-center justify-center"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                      />
-                    </svg>
-                  </Link>
+                      View Details
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.8}
+                        stroke="currentColor"
+                        className="size-[20px] ms-[8px] mt-[2px]"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <h2 className="text-center">No Car Found!!! </h2>
-        )}
+            ))
+          ) : (
+            <h2 className="text-center">No Car Found!!! </h2>
+          )}
+        </div>
       </div>
     </div>
   );

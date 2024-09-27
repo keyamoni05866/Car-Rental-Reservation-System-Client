@@ -10,6 +10,8 @@ import { adminPaths } from "./admin.routes";
 import ProtectedRoute from "./ProtectedRoute";
 import { userPaths } from "./user.route";
 import Cars from "../pages/Frontend/Cars/Cars";
+import CarDetails from "../pages/Frontend/CarDetails/CarDetails";
+import AboutUs from "../pages/Frontend/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -25,12 +27,20 @@ const router = createBrowserRouter([
         element: <Cars />,
       },
       {
+        path: "cars/:id",
+        element: <CarDetails />,
+      },
+      {
         path: "/register",
         element: <Register />,
       },
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/aboutUs",
+        element: <AboutUs />,
       },
     ],
   },

@@ -6,7 +6,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Integral CF;
+  font-family: Poppins;
 }
 
 .primary-color {
@@ -23,9 +23,9 @@
   background-color: #051c34;
 }
 
-/* .custom-background {
-  background: linear-gradient(120deg, #577492, #2a75c5);
-} */
+.custom-background {
+  background: linear-gradient(120deg, #577492, #4a76a5);
+}
 
 .custom-btn {
   padding: 9px 30px;
@@ -52,7 +52,7 @@
   text-decoration: none;
   color: #051c34;
   background-color: transparent;
-  border: 1px solid #97d8c4;
+  border: 1px solid #155ba7;
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;

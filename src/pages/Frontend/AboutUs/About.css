@@ -1,0 +1,8 @@
+.bg-image {
+  background-image: url(.../../../../../assets/AboutPhotos/gradient1.png);
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+  /* margin: 130px 130px; */
+  width: 1240px;
+  height: 300px;
+}

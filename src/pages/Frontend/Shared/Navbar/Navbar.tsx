@@ -7,7 +7,7 @@ const Navbar = () => {
   // console.log(userInfo?.role);
   return (
     <>
-      <div className="navbar lg:px-16">
+      <div className="navbar ">
         <div className="navbar-start  ">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -47,8 +47,12 @@ const Navbar = () => {
             </ul>
           </div>
           <div className=" flex items-center mt-2">
-            <img src={logo} alt="" className="size-10   rounded-xl" />
-            <h5 className="text-xl  ms-1  font-semibold  primary-color uppercase">
+            <img
+              src={logo}
+              alt=""
+              className="lg:size-10 size-7    rounded-xl"
+            />
+            <h5 className="lg:text-xl text-lg  ms-1  font-semibold  primary-color uppercase">
               RentCars
             </h5>
           </div>
@@ -65,7 +69,7 @@ const Navbar = () => {
               <Link to="/cars">Cars</Link>
             </li>
             <li>
-              <Link to="/">About Us</Link>
+              <Link to="/aboutUs">About Us</Link>
             </li>
             <li>
               <Link to="/booking">Booking</Link>
@@ -87,7 +91,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end ">
-          <Link to="/login" className=" text-[15px] font-medium mt-1  me-5 ">
+          <Link to="/login" className=" text-[15px] font-medium mt-1  me-5  ">
             Sign In
           </Link>
           <Link to="/register" className="custom-btn mt-1 ">

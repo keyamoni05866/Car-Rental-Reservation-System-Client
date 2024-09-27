@@ -10,6 +10,7 @@ export type TCar = {
   carType?: ["SUV" | "Sedan" | "Hatchback" | "Convertible" | "Coupe"];
   status: "available" | "unavailable";
   features: string[];
+  AdditionalFeatures: string[];
   pricePerHour: number;
   isDeleted: boolean;
 };
@@ -25,6 +26,7 @@ export type TUpdateCar = {
   carType?: ["SUV" | "Sedan" | "Hatchback" | "Convertible" | "Coupe"];
   status?: "available" | "unavailable";
   features?: string[];
+  AdditionalFeatures?: string[];
   pricePerHour?: number;
   isDeleted?: boolean;
 };

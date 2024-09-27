@@ -93,7 +93,7 @@ const Register = () => {
                     <input
                       type="email"
                       {...register("email", {
-                        required: "Name is required",
+                        required: "Email is required",
                         pattern: {
                           value: /^\S+@\S+$/i,
                           message: "Invalid Email Address",

@@ -25,7 +25,6 @@ const CreateCarModal = () => {
     })
       .then((res) => res.json())
       .then(async (imgResponse) => {
-        const toastId = toast.loading("Creating");
         const imgURL = imgResponse.data.display_url;
         data.image = imgURL;
         if (typeof data.features === "string") {
@@ -38,14 +37,10 @@ const CreateCarModal = () => {
         try {
           const res = (await addCar({ ...data })) as TResponse<any>;
           if (res.error) {
-            toast.error(res.error?.data?.message, {
-              id: toastId,
-              duration: 1000,
-            });
-          } else {
-            toast.success(res.data?.message, { id: toastId, duration: 3000 });
-            reset();
+            toast.error(res.error?.data.message, { duration: 3000 });
           }
+          toast.success(res.data?.message, { duration: 3000 });
+          reset();
         } catch (error) {
           toast.error("Something Went Wrong!!");
         }
@@ -99,11 +94,16 @@ const CreateCarModal = () => {
                 <div className="relative mt-2 rounded-md shadow-sm">
                   <input
                     type="text"
-                    {...register("name")}
+                    {...register("name", { required: "Name is required" })}
                     placeholder="Car Name"
                     className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                   />
                 </div>
+                {errors.name && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors?.name.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -112,13 +112,16 @@ const CreateCarModal = () => {
                 <div className="relative mt-2 rounded-md shadow-sm">
                   <input
                     type="file"
-                    {...register("image")}
+                    {...register("image", { required: "Image is required" })}
                     className="file-input w-full max-w-xs h-[37px] border-0 py-1.5 pl-2 text-gray-900 ring-1 ring-inset ring-gray-300 "
                   />
                 </div>
-                {/* Display error message if no file is selected */}
+
                 {errors.image && (
-                  <p className="text-red-500 text-xs mt-1">Image is required</p>
+                  <p className="text-red-500 text-xs mt-1">
+                    {" "}
+                    {errors?.image.message}
+                  </p>
                 )}
               </div>
               <div>
@@ -127,12 +130,19 @@ const CreateCarModal = () => {
                 </label>
                 <div className="relative mt-2 rounded-md shadow-sm">
                   <input
-                    {...register("features")}
+                    {...register("features", {
+                      required: "Features is required",
+                    })}
                     type="text"
                     placeholder="Add Features using comma"
                     className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                   />
                 </div>
+                {errors.features && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors?.features.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -140,12 +150,18 @@ const CreateCarModal = () => {
                 </label>
                 <div className="relative mt-2 rounded-md shadow-sm">
                   <input
-                    {...register("color")}
+                    {...register("color", { required: "Color is required" })}
                     type="text"
                     placeholder="Car Color"
                     className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                   />
                 </div>
+                {errors.color && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {" "}
+                    {errors?.color.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -153,12 +169,18 @@ const CreateCarModal = () => {
                 </label>
                 <div className="relative mt-2 rounded-md shadow-sm">
                   <input
-                    {...register("model")}
+                    {...register("model", { required: "Model is required" })}
                     type="text"
                     placeholder="Car Model"
                     className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                   />
                 </div>
+                {errors.model && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {" "}
+                    {errors?.model.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -166,12 +188,18 @@ const CreateCarModal = () => {
                 </label>
                 <div className="relative mt-2 rounded-md shadow-sm">
                   <input
-                    {...register("year")}
+                    {...register("year", { required: "year is required" })}
                     type="text"
                     placeholder="Car Year"
                     className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                   />
                 </div>
+                {errors.year && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {" "}
+                    {errors?.year.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -179,12 +207,19 @@ const CreateCarModal = () => {
                 </label>
                 <div className="relative mt-2 rounded-md shadow-sm">
                   <input
-                    {...register("pricePerHour")}
+                    {...register("pricePerHour", {
+                      required: "price per hour is required",
+                    })}
                     type="text"
                     placeholder="Price Per Hour"
                     className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                   />
                 </div>
+                {errors.pricePerHour && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors?.pricePerHour.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium leading-6 text-gray-900 mt-2">
@@ -194,7 +229,9 @@ const CreateCarModal = () => {
                   <select
                     defaultValue={"selected"}
                     className=" block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6"
-                    {...register("isElectric")}
+                    {...register("isElectric", {
+                      required: "isElectric is required",
+                    })}
                   >
                     <option disabled value={"selected"}>
                       Select Yes Or No
@@ -203,29 +240,62 @@ const CreateCarModal = () => {
                     <option>No</option>
                   </select>
                 </div>
+                {errors.isElectric && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors?.isElectric.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Car Type :
+                </label>
+                <div className="relative mt-2 rounded-md shadow-sm">
+                  <select
+                    defaultValue={"selected"}
+                    className=" block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6"
+                    {...register("carType", {
+                      required: "car type is required",
+                    })}
+                  >
+                    <option disabled value={"selected"}>
+                      Select Car Type
+                    </option>
+                    <option>SUV</option>
+                    <option>Sedan</option>
+                    <option>Hatchback</option>
+                    <option>Convertible</option>
+                    <option>Coupe</option>
+                  </select>
+                  {errors.carType && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors?.carType.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Additional Features:
+                </label>
+                <div className="relative mt-2 rounded-md shadow-sm">
+                  <input
+                    {...register("AdditionalFeatures", {
+                      required: "Additional Features is required",
+                    })}
+                    type="text"
+                    placeholder="Separate with comma"
+                    className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                  />
+                </div>
+                {errors.AdditionalFeatures && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors?.AdditionalFeatures.message}
+                  </p>
+                )}
               </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                Car Type :
-              </label>
-              <div className="relative mt-2 rounded-md shadow-sm">
-                <select
-                  defaultValue={"selected"}
-                  className=" block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6"
-                  {...register("carType")}
-                >
-                  <option disabled value={"selected"}>
-                    Select Category
-                  </option>
-                  <option>SUV</option>
-                  <option>Sedan</option>
-                  <option>Hatchback</option>
-                  <option>Convertible</option>
-                  <option>Coupe</option>
-                </select>
-              </div>
-            </div>
+
             <div>
               <label className="block text-sm font-medium leading-6 text-gray-900 mt-2">
                 Description :
@@ -234,9 +304,16 @@ const CreateCarModal = () => {
                 <textarea
                   className="textarea textarea-bordered w-full"
                   placeholder="Describe Your Car"
-                  {...register("description")}
+                  {...register("description", {
+                    required: "Description is required",
+                  })}
                 ></textarea>
               </div>
+              {errors.description && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors?.description.message}
+                </p>
+              )}
             </div>
             <div className="flex justify-end my-3">
               <button

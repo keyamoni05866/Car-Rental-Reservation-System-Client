@@ -7,11 +7,17 @@ import { TCar } from "../../../../Types";
 import swal from "sweetalert";
 import { toast } from "sonner";
 
-import { useState } from "react";
-
 const CarTables = () => {
-  const { data: cars } = useGetCarsQuery({});
+  const { data: cars, isLoading } = useGetCarsQuery({});
   const [deleteCar] = useDeleteCarMutation();
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <span className="loading loading-spinner loading-xs"></span>
+      </div>
+    );
+  }
 
   const handleDelete = (id: string) => {
     swal({

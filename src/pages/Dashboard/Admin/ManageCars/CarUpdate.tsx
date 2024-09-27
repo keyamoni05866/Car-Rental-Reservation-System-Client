@@ -46,6 +46,11 @@ const CarUpdate = () => {
                 ?.split(",")
                 .map((feature: string) => feature.trim());
             }
+            if (typeof data.AdditionalFeatures === "string") {
+              data.AdditionalFeatures = (data.AdditionalFeatures as string)
+                ?.split(",")
+                .map((additionalFeature: string) => additionalFeature.trim());
+            }
             const toastId = toast.loading("Updating");
             const carData = {
               _id: id,
@@ -57,6 +62,7 @@ const CarUpdate = () => {
               isElectric: data.isElectric,
               carType: data.carType,
               features: data.features,
+              AdditionalFeatures: data.AdditionalFeatures,
               pricePerHour: Number(data.pricePerHour),
               image: imgURL,
             };
@@ -80,6 +86,11 @@ const CarUpdate = () => {
           ?.split(",")
           .map((feature: string) => feature.trim());
       }
+      if (typeof data.AdditionalFeatures === "string") {
+        data.AdditionalFeatures = (data.AdditionalFeatures as string)
+          ?.split(",")
+          .map((additionalFeature: string) => additionalFeature.trim());
+      }
 
       const carData = {
         _id: id,
@@ -91,6 +102,7 @@ const CarUpdate = () => {
         isElectric: data.isElectric,
         carType: data.carType,
         features: data.features,
+        AdditionalFeatures: data.AdditionalFeatures,
         pricePerHour: Number(data.pricePerHour),
       };
 
@@ -221,25 +233,39 @@ const CarUpdate = () => {
               </select>
             </div>
           </div>
-        </div>
-        <div>
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Car Type :
-          </label>
-          <div className="relative mt-2 rounded-md shadow-sm">
-            <select
-              defaultValue={car?.carType}
-              className=" block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6"
-              {...register("carType")}
-            >
-              <option>SUV</option>
-              <option>Sedan</option>
-              <option>Hatchback</option>
-              <option>Convertible</option>
-              <option>Coupe</option>
-            </select>
+          <div>
+            <label className="block text-sm font-medium leading-6 text-gray-900">
+              Car Type :
+            </label>
+            <div className="relative mt-2 rounded-md shadow-sm">
+              <select
+                defaultValue={car?.carType}
+                className=" block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6"
+                {...register("carType")}
+              >
+                <option>SUV</option>
+                <option>Sedan</option>
+                <option>Hatchback</option>
+                <option>Convertible</option>
+                <option>Coupe</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium leading-6 text-gray-900">
+              Additional Features:
+            </label>
+            <div className="relative mt-2 rounded-md shadow-sm">
+              <input
+                defaultValue={car?.AdditionalFeatures}
+                {...register("AdditionalFeatures")}
+                type="text"
+                className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+              />
+            </div>
           </div>
         </div>
+
         <div>
           <label className="block text-sm font-medium leading-6 text-gray-900 mt-2">
             Description :
