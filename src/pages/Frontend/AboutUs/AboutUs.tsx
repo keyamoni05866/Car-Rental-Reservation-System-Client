@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import aboutImage from "../../../assets/AboutPhotos/about1.png";
-import aboutImage2 from "../../../assets/About Page Photos/about2.jpg";
 import CommitmentAndContact from "./CommitmentAndContact";
 import "./About.css";
 import Fleet from "./Fleet";

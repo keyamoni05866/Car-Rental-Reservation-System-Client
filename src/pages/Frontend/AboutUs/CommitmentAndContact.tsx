@@ -60,7 +60,7 @@ const CommitmentAndContact = () => {
         <div className="w-full h-full rounded-s-md">
           <div className=" p-5">
             <h4 className="text-[28px] font-semibold ">Contact Information</h4>
-            <p className=" ms-1">Get in Touch with Campers Shop!!!</p>
+            <p className=" ms-1">Get in Touch with RENT CARS!!!</p>
 
             <div className=" mt-[50px] ms-2 ">
               <div className="flex items-center gap-5 mb-4">

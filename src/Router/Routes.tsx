@@ -12,6 +12,7 @@ import { userPaths } from "./user.route";
 import Cars from "../pages/Frontend/Cars/Cars";
 import CarDetails from "../pages/Frontend/CarDetails/CarDetails";
 import AboutUs from "../pages/Frontend/AboutUs/AboutUs";
+import Contact from "../pages/Frontend/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/aboutUs",
         element: <AboutUs />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },
