@@ -8,11 +8,13 @@ const Cars = () => {
   const [color, setColor] = useState("All");
   const [features, setFeatures] = useState("All");
   const [priceRange, setPriceRange] = useState<number | "">("");
+  const [sortByPrice, setSortByPrice] = useState<"asc" | "desc">("asc");
   const { data: cars, isLoading } = useGetCarsQuery({
     carType,
     color,
     priceRange,
     features,
+    sortByPrice,
   });
 
   if (isLoading) {
@@ -28,11 +30,12 @@ const Cars = () => {
     setColor("All");
     setFeatures("All");
     setPriceRange("");
+    setSortByPrice("asc");
   };
 
   return (
     <div className=" min-h-screen mb-20 mt-10 px-3 ">
-      <div className="lg:flex justify-between w-full gap-x-6">
+      <div className="lg:flex justify-between w-full gap-5 ">
         <div className="lg:w-[20%] lg:px-0 px-3 ">
           <div className="flex  justify-between mb-5 mt-5">
             <h4>Filter</h4>
@@ -122,74 +125,96 @@ const Cars = () => {
           </div>
         </div>
 
-        <div className="lg:mt-5  mt-16 card-grid    gap-4 lg:w-[80%]">
-          {cars?.data && cars?.data?.length > 0 ? (
-            cars?.data?.map((car: TCar) => (
-              <div
-                key={car._id}
-                className="card card-compact bg-base-100 max-w-[320px] shadow-md rounded-[3px] mx-auto"
-              >
-                <div className="bg-base-200 w-[320px]  h-[200px] flex justify-center items-center">
-                  <img
-                    src={car.image}
-                    alt="Product Picture"
-                    className=" w-full h-full "
-                  />
-                </div>
-                <div className=" my-2 ">
-                  <div className="mx-7">
-                    <h3 className="card-title">{car?.name}</h3>
-                    <p className="text-md">
-                      {car?.description.substring(0, 100)}...
-                      <Link
-                        to={`/cars/${car._id}`}
-                        className="primary-color hover:underline"
-                      >
-                        see more
-                      </Link>
-                    </p>
-                    <div className="divider mb-0 mt-0"></div>
-                    <div className="flex justify-between">
-                      {" "}
-                      <h4 className=" text-lg ">Price:</h4>{" "}
-                      <div className="flex">
-                        <h4 className="font-semibold text-lg ">
-                          {" "}
-                          ${car?.pricePerHour}
-                        </h4>
-                        <h4 className="text-lg ms-1">/hour</h4>
+        <div className="lg:ms-6 mt-10 lg:mt-0">
+          <div className="lg:flex justify-between">
+            <h4 className="lg:pb-0 pb-3">
+              <span className="primary-color lg:text-4xl text-2xl font-bold text-center ">
+                {" "}
+                Choose Your Ideal Car.
+              </span>
+              <p className=" font-extralight mt-2">
+                Discover our wide range of vehicles to suit your travel needs!
+              </p>
+            </h4>
+
+            <select
+              className="select select-bordered w-full max-w-xs"
+              value={sortByPrice}
+              onChange={(e) => setSortByPrice(e.target.value as "asc" | "desc")}
+            >
+              <option value="asc">Price Per Hour: Low to High</option>
+              <option value="desc">Price Per Hour: High to Low</option>
+            </select>
+          </div>
+          <div className="lg:mt-3  mt-10 card-grid mx-auto   gap-4 lg:w-[80%]">
+            {cars?.data && cars?.data?.length > 0 ? (
+              cars?.data?.map((car: TCar) => (
+                <div
+                  key={car._id}
+                  className="card card-compact bg-base-100 max-w-[320px] shadow-md rounded-[3px] mx-auto"
+                >
+                  <div className="bg-base-200 w-[320px]  h-[200px] flex justify-center items-center">
+                    <img
+                      src={car.image}
+                      alt="Product Picture"
+                      className=" w-full h-full "
+                    />
+                  </div>
+                  <div className=" my-2 ">
+                    <div className="mx-7">
+                      <h3 className="card-title">{car?.name}</h3>
+                      <p className="text-md">
+                        {car?.description.substring(0, 100)}...
+                        <Link
+                          to={`/cars/${car._id}`}
+                          className="primary-color hover:underline"
+                        >
+                          see more
+                        </Link>
+                      </p>
+                      <div className="divider mb-0 mt-0"></div>
+                      <div className="flex justify-between">
+                        {" "}
+                        <h4 className=" text-lg ">Price:</h4>{" "}
+                        <div className="flex">
+                          <h4 className="font-semibold text-lg ">
+                            {" "}
+                            ${car?.pricePerHour}
+                          </h4>
+                          <h4 className="text-lg ms-1">/hour</h4>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="card-actions w-full mt-4 mb-4 items-center justify-center">
-                    <Link
-                      to={`/cars/${car._id}`}
-                      className="custom-btn flex w-full mx-5  items-center justify-center"
-                    >
-                      View Details
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.8}
-                        stroke="currentColor"
-                        className="size-[20px] ms-[8px] mt-[2px]"
+                    <div className="card-actions w-full mt-4 mb-4 items-center justify-center">
+                      <Link
+                        to={`/cars/${car._id}`}
+                        className="custom-btn flex w-full mx-5  items-center justify-center"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                        />
-                      </svg>
-                    </Link>
+                        View Details
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.8}
+                          stroke="currentColor"
+                          className="size-[20px] ms-[8px] mt-[2px]"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                          />
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            <h2 className="text-center">No Car Found!!! </h2>
-          )}
+              ))
+            ) : (
+              <h2 className="text-center">No Car Found!!! </h2>
+            )}
+          </div>
         </div>
       </div>
     </div>
