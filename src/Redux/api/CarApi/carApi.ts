@@ -16,6 +16,18 @@ const carApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getFeaturedCars: builder.query({
+      query: () => ({
+        url: "/cars/featuredCars",
+        method: "GET",
+      }),
+      providesTags: ["cars"],
+      transformResponse: (response: TResponseRedux<TCar[]>) => {
+        return {
+          data: response.data,
+        };
+      },
+    }),
     carDetails: builder.query({
       query: (id) => ({
         url: `/cars/${id}`,
@@ -59,6 +71,7 @@ const carApi = baseApi.injectEndpoints({
 export const {
   useAddCarMutation,
   useGetCarsQuery,
+  useGetFeaturedCarsQuery,
   useCarDetailsQuery,
   useUpdateCarMutation,
   useDeleteCarMutation,

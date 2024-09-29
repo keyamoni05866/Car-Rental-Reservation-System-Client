@@ -4,22 +4,35 @@ import ManageCars from "../pages/Dashboard/Admin/ManageCars/ManageCars";
 import ManageUser from "../pages/Dashboard/Admin/UserManagement/ManageUser/ManageUser";
 import UpdateUser from "../pages/Dashboard/Admin/UserManagement/ManageUser/UpdateUser";
 import RoleManagement from "../pages/Dashboard/Admin/UserManagement/RoleManagement";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const adminPaths = [
   {
     name: "Admin Dashboard",
     path: "dashboard",
-    element: <AdminDashboard />,
+    element: (
+      <ProtectedRoute requiredRole={["admin"]}>
+        <AdminDashboard />
+      </ProtectedRoute>
+    ),
   },
   {
     name: "Car Management",
     path: "car-management",
-    element: <ManageCars />,
+    element: (
+      <ProtectedRoute requiredRole={["admin"]}>
+        <ManageCars />
+      </ProtectedRoute>
+    ),
   },
   {
     name: "",
     path: "update/:id",
-    element: <CarUpdate />,
+    element: (
+      <ProtectedRoute requiredRole={["admin"]}>
+        <CarUpdate />
+      </ProtectedRoute>
+    ),
   },
 
   {
@@ -28,17 +41,29 @@ export const adminPaths = [
       {
         name: "Role Management",
         path: "role-management",
-        element: <RoleManagement />,
+        element: (
+          <ProtectedRoute requiredRole={["admin"]}>
+            <RoleManagement />
+          </ProtectedRoute>
+        ),
       },
       {
         name: "Manage User",
         path: "user-management",
-        element: <ManageUser />,
+        element: (
+          <ProtectedRoute requiredRole={["admin"]}>
+            <ManageUser />
+          </ProtectedRoute>
+        ),
       },
       {
         name: "",
         path: "updateUser/:id",
-        element: <UpdateUser />,
+        element: (
+          <ProtectedRoute requiredRole={["admin"]}>
+            <UpdateUser />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

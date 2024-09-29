@@ -331,7 +331,7 @@ const ManageUser = () => {
           ) : (
             <tr>
               <td colSpan={5} className="text-center py-3">
-                No Product Found!!! Please Add
+                No User Found!!!
               </td>
             </tr>
           )}

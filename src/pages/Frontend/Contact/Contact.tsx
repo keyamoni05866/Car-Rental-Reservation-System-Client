@@ -14,7 +14,7 @@ const Contact = () => {
               <h4 className="text-[28px] font-semibold ">
                 Contact Information
               </h4>
-              <p className=" ms-1">Get in Touch with RENT CARS!!!</p>
+              <p className=" ms-1">Get in Touch with CityCar Rental!!!</p>
 
               <div className=" mt-[90px] ms-2 ">
                 <div className="flex items-center gap-5 mb-4">

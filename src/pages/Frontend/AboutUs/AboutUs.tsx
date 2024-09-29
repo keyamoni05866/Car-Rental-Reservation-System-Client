@@ -11,12 +11,16 @@ const AboutUs = () => {
         <div className="lg:w-[50%]">
           <img src={aboutImage} alt="" className="w-[550px] h-[450px]" />
         </div>
-        <div className="lg:w-[50%] lg:mt-24 lg:px-0 px-2">
-          <h4 className="lg:text-[50px] text-2xl primary-color">
-            Our Company Overview!!!!
-          </h4>
+        <div className="lg:w-[50%] lg:mt-10 lg:px-0 px-2">
+          <div className="bg-[#cfe4fa]   w-[180px] h-[50px] mb-5 rounded-xl">
+            {" "}
+            <h4 className="primary-color uppercase font-[540] lg:text-md text-[15px]  text-center  pt-3 ">
+              About us
+            </h4>
+          </div>
+          <h4 className="lg:text-[50px] text-2xl ">Our Company Overview!!!!</h4>
           <p className="lg:text-lg mt-5 ">
-            Established in 2015, our car rental service has grown from a small,
+            Established in 2024, our car rental service has grown from a small,
             local provider to a trusted name across the region. Our mission is
             to offer top-notch car rental services that are both affordable and
             reliable, making your travel easier and more enjoyable. Our vision
@@ -39,11 +43,11 @@ const AboutUs = () => {
         <div className="shadow-lg lg:w-[300px] lg:h-[240px] mb-10 p-8 text-justify rounded-lg bg-base-200">
           <p>
             <span className="font-semibold me-2">Founding Year:</span>
-            Established in 2015, our car rental service has grown from a small,
+            Established in 2024, our car rental service has grown from a small,
             local provider to a trusted name across the region
           </p>
           <p className="mt-3 tex-xl">
-            <span className="font-semibold ">Founded:</span> 2015
+            <span className="font-semibold ">Founded:</span> 2024
           </p>
         </div>
         <div className="shadow-lg lg:w-[300px] lg:h-[240px] mb-8 p-8 text-justify rounded-lg bg-base-200">

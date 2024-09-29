@@ -13,8 +13,14 @@ import Cars from "../pages/Frontend/Cars/Cars";
 import CarDetails from "../pages/Frontend/CarDetails/CarDetails";
 import AboutUs from "../pages/Frontend/AboutUs/AboutUs";
 import Contact from "../pages/Frontend/Contact/Contact";
+import Error from "../pages/Error/Error";
+import Booking from "../pages/Frontend/Booking/Booking";
 
 const router = createBrowserRouter([
+  {
+    path: "*",
+    element: <Error />,
+  },
   {
     path: "/",
     element: <Main></Main>,
@@ -47,12 +53,20 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+      {
+        path: "/booking",
+        element: (
+          <ProtectedRoute requiredRole={["admin", "user"]}>
+            <Booking />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
   {
     path: "/admin",
     element: (
-      <ProtectedRoute>
+      <ProtectedRoute requiredRole={["admin"]}>
         <DashboardLayout />
       </ProtectedRoute>
     ),
@@ -61,7 +75,7 @@ const router = createBrowserRouter([
   {
     path: "/user",
     element: (
-      <ProtectedRoute>
+      <ProtectedRoute requiredRole={["user"]}>
         <DashboardLayout />
       </ProtectedRoute>
     ),

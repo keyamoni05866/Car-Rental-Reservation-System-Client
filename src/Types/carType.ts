@@ -12,7 +12,7 @@ export type TCar = {
   features: string[];
   AdditionalFeatures: string[];
   pricePerHour: number;
-  isDeleted: boolean;
+  isFeatured: boolean;
 };
 export type TUpdateCar = {
   _id?: string;
@@ -28,5 +28,5 @@ export type TUpdateCar = {
   features?: string[];
   AdditionalFeatures?: string[];
   pricePerHour?: number;
-  isDeleted?: boolean;
+  isFeatured?: boolean;
 };

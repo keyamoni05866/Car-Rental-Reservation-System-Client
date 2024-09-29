@@ -1,5 +1,6 @@
 import BookingManage from "../pages/Dashboard/User/BookingManage/BookingManage";
 import UserProfile from "../pages/Dashboard/User/DashboardOverview/UserProfile/UserProfile";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const userPaths = [
   {
@@ -8,7 +9,11 @@ export const userPaths = [
       {
         name: "Profile",
         path: "profile-management",
-        element: <UserProfile />,
+        element: (
+          <ProtectedRoute requiredRole={["user"]}>
+            <UserProfile />
+          </ProtectedRoute>
+        ),
       },
       {
         name: "Booking History",

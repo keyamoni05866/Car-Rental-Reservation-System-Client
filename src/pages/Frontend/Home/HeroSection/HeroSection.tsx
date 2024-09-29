@@ -24,7 +24,11 @@ const HeroSection = () => {
           </Link>
         </div>
         <div className="lg:w-[50%] flex justify-end mt-16">
-          <img src={image} className="lg:w-[640px] lg:h-[400px]" alt="" />
+          <img
+            src={image}
+            className="lg:w-[640px] lg:h-[400px] w-[400px] h-[200px]"
+            alt=""
+          />
         </div>
       </div>
     </div>

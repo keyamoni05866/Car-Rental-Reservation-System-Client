@@ -46,14 +46,14 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <div className=" flex items-center mt-2">
+          <div className=" flex items-center ">
             <img
               src={logo}
               alt=""
               className="lg:size-10 size-7    rounded-xl"
             />
-            <h5 className="lg:text-xl text-lg  ms-1  font-semibold  primary-color uppercase">
-              RentCars
+            <h5 className="lg:text-xl text-lg  ms-1  font-semibold  primary-color ">
+              CityCar Rental
             </h5>
           </div>
         </div>

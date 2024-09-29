@@ -21,6 +21,7 @@ const Login = () => {
   const [loginUser] = useLoginUserMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const handleLogin = async (data: LoginFormData) => {
     // console.log(data);
     const toastId = toast.loading("Sign In", { duration: 1000 });

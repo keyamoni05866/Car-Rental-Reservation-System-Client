@@ -17,13 +17,12 @@ const Teams = () => {
             />
           </div>
           <h3 className=" text-xl uppercase text-center  ">Keya Moni</h3>
-          <span className="text-md  ms-20 lg:ms-11">Founder & CEO</span>
-          <p>
-            <p className="text-justify text-[15px]  mt-1">
-              Keya Moni is an avid camper with over 20 years of experience in
-              the outdoor industry. Her passion for camping and adventure
-              inspired him to create this type of plateform
-            </p>
+          <span className="text-md  ms-20 text-center">Founder & CEO</span>
+
+          <p className="text-justify text-[15px]  mt-1">
+            Keya Moni is an avid camper with over 20 years of experience in the
+            outdoor industry. Her passion for camping and adventure inspired him
+            to create this type of plateform
           </p>
         </div>
         <div className="p-3  w-[300px]  h-[320px] shadow-lg  rounded-lg  border-base-300 mx-auto mb-10 ">
@@ -35,16 +34,15 @@ const Teams = () => {
             />
           </div>
           <h3 className=" text-xl uppercase text-center   ">Jhon Doe</h3>
-          <span className=" text-[15px]   ms-20  lg:ms-11">
+          <span className=" text-[15px]   ms-20  text-center">
             {" "}
             Marketing Officer
           </span>
-          <p>
-            <p className="text-justify text-[15px] mt-1">
-              Jhon brings her creative expertise and marketing acumen to Campers
-              Shop, ensuring that our brand resonates with outdoor lovers
-              everywhere .He leads our efforts to connect with customers.
-            </p>
+
+          <p className="text-justify text-[15px] mt-1">
+            Jhon brings her creative expertise and marketing acumen to CityCar
+            Rental, ensuring that our brand resonates with outdoor lovers
+            everywhere .He leads our efforts to connect with customers.
           </p>
         </div>
         <div className="p-3  w-[300px]  h-[320px] shadow-lg  rounded-lg  border-base-300 mx-auto mb-10 ">
@@ -56,16 +54,15 @@ const Teams = () => {
             />
           </div>
           <h3 className=" text-xl uppercase text-center   ">Mike Brown</h3>
-          <span className=" text-[15px]   ms-20 lg:ms-9">
+          <span className=" text-[15px]   ms-20 text-center">
             {" "}
             Product Development
           </span>
-          <p>
-            <p className="text-justify text-[15px] mt-1">
-              Mike is an outdoor gear expert with a deep understanding of what
-              makes a camping trip successful.Mike's hands-on experience in the
-              field helps us choose the best gear for our customers.
-            </p>
+
+          <p className="text-justify text-[15px] mt-1">
+            Mike is an outdoor gear expert with a deep understanding of what
+            makes a trip successful.Mike's hands-on experience in the field
+            helps us choose the best gear for our customers.
           </p>
         </div>
         <div className="p-3  w-[300px] h-[320px] shadow-lg  rounded-lg  border-base-300 mx-auto mb-10">
@@ -77,16 +74,15 @@ const Teams = () => {
             />
           </div>
           <h3 className=" text-xl uppercase text-center   ">Robert King</h3>
-          <span className=" text-[15px]  ms-20  lg:ms-11">
+          <span className=" text-[15px]  ms-20  text-center">
             {" "}
             Operations Officer
           </span>
-          <p>
-            <p className="text-justify text-[15px] mt-1">
-              With his extensive background in supply chain management and a
-              passion for efficient processes, Robert plays a key role in making
-              sure our products reach customers quickly and reliably.
-            </p>
+
+          <p className="text-justify text-[15px] mt-1">
+            With his extensive background in supply chain management and a
+            passion for efficient processes, Robert plays a key role in making
+            sure our products reach customers quickly and reliably.
           </p>
         </div>
       </div>

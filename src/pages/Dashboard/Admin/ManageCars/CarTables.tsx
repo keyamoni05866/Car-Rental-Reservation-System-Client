@@ -2,15 +2,16 @@ import { Link } from "react-router-dom";
 import {
   useDeleteCarMutation,
   useGetCarsQuery,
+  useUpdateCarMutation,
 } from "../../../../Redux/api/CarApi/carApi";
-import { TCar } from "../../../../Types";
+import { TCar, TResponse } from "../../../../Types";
 import swal from "sweetalert";
 import { toast } from "sonner";
 
 const CarTables = () => {
   const { data: cars, isLoading } = useGetCarsQuery({});
   const [deleteCar] = useDeleteCarMutation();
-
+  const [updateCar] = useUpdateCarMutation();
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -33,6 +34,23 @@ const CarTables = () => {
       }
     });
   };
+
+  const handleFeatured = async (id: string, isFeatured: boolean) => {
+    const data = {
+      _id: id,
+      isFeatured: isFeatured,
+    };
+    console.log(id);
+    try {
+      const res = (await updateCar(data)) as TResponse<any>;
+      if (res.error) {
+        toast.error(res.error?.data?.message);
+      }
+    } catch (error) {
+      toast.error("Something Went Wrong!!");
+    }
+  };
+
   return (
     <table className="table-xs md:table-md lg:table lg:mx-10  ">
       {/* head */}
@@ -67,9 +85,9 @@ const CarTables = () => {
               <td>{car?.carType}</td>
               <td>{car?.model}</td>
 
-              <td>
+              <td className="lg:flex lg:gap-2 gap-y-3 ">
                 <Link
-                  to={`/products/${car._id}`}
+                  to={`/cars/${car._id}`}
                   className="me-2 btn btn-outline  mb-2  btn-xs lg:btn-sm"
                 >
                   Details
@@ -87,6 +105,25 @@ const CarTables = () => {
                 >
                   Delete
                 </button>
+
+                <div
+                  onClick={() =>
+                    handleFeatured(
+                      car._id,
+                      car.isFeatured === false ? true : false
+                    )
+                  }
+                >
+                  {car.isFeatured === false ? (
+                    <button className="me-2 mb-2 btn btn-xs lg:btn-sm">
+                      Feature
+                    </button>
+                  ) : (
+                    <button className="        rounded-lg font-medium primary-bg-color text-[15px] text-white hover:bg-[#051c34] btn-xs  lg:btn-sm">
+                      Featured
+                    </button>
+                  )}
+                </div>
               </td>
             </tr>
           ))
