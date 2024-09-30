@@ -16,6 +16,19 @@ const carApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getAvailableCarsForBooking: builder.query({
+      query: (params) => ({
+        url: "/cars/availableCarsForBooking",
+        method: "GET",
+        params,
+      }),
+      providesTags: ["cars"],
+      transformResponse: (response: TResponseRedux<TCar[]>) => {
+        return {
+          data: response.data,
+        };
+      },
+    }),
     getFeaturedCars: builder.query({
       query: () => ({
         url: "/cars/featuredCars",
@@ -72,6 +85,7 @@ export const {
   useAddCarMutation,
   useGetCarsQuery,
   useGetFeaturedCarsQuery,
+  useGetAvailableCarsForBookingQuery,
   useCarDetailsQuery,
   useUpdateCarMutation,
   useDeleteCarMutation,

@@ -1,14 +1,19 @@
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   useAddCarMutation,
   useCarDetailsQuery,
 } from "../../../Redux/api/CarApi/carApi";
-import { Key } from "react";
+import { Key, useState } from "react";
 import { TCar } from "../../../Types";
+import { useDispatch } from "react-redux";
+import { bookingCar } from "../../../Redux/features/booking/bookingSlice";
 
 const CarDetails = () => {
   const { id } = useParams();
   const { data: cars, isLoading } = useCarDetailsQuery(id);
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   //   console.log(cars);
   const carDetails: TCar = cars?.data;
 
@@ -20,6 +25,32 @@ const CarDetails = () => {
     );
   }
 
+  const handleAddFeatures = (additionalFeature: string) => {
+    let getAddedFeatures: string[];
+    if (selectedFeatures.includes(additionalFeature)) {
+      getAddedFeatures = selectedFeatures.filter(
+        (item) => item !== additionalFeature
+      );
+    } else {
+      getAddedFeatures = [...selectedFeatures, additionalFeature];
+    }
+    setSelectedFeatures(getAddedFeatures);
+    const updatedCar = {
+      ...carDetails,
+      chosenAdditionalFeatures: getAddedFeatures,
+    };
+    dispatch(bookingCar(updatedCar));
+  };
+
+  const handleAddBooking = () => {
+    const updatedCar = {
+      ...carDetails,
+      chosenAdditionalFeatures: selectedFeatures,
+    };
+    dispatch(bookingCar(updatedCar));
+    navigate("/booking");
+  };
+
   return (
     <div className=" lg:px-8 pb-20 px-9">
       <div className="w-full lg:flex lg:justify-between   lg:gap-x-12 lg:mt-16 ">
@@ -30,7 +61,7 @@ const CarDetails = () => {
             className="w-full h-full"
           />
         </div>
-        <div className="lg:w-[50%] lg:mt-0 mt-10">
+        <div key={carDetails?._id} className="lg:w-[50%] lg:mt-0 mt-10">
           <div className="flex gap-2 items-center lg:text-xl">
             <span className="font-semibold">Model:</span>
             <p className=" font-light">{carDetails?.model}</p>
@@ -88,6 +119,7 @@ const CarDetails = () => {
                 <div className="flex items-center">
                   <input
                     value={AdditionalFeature}
+                    onChange={() => handleAddFeatures(AdditionalFeature)}
                     type="checkbox"
                     className="size-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
@@ -105,8 +137,12 @@ const CarDetails = () => {
 
           <p className="font-light  ">{carDetails?.description}</p>
           <div className=" mt-5 flex justify-end ">
-            <button className="custom-outline-btn lg:w-[50%] w-full  !font-bold !text-xl">
+            <button
+              onClick={handleAddBooking}
+              className="custom-outline-btn lg:w-[50%] w-full  !font-bold !text-xl"
+            >
               Book Now
+              {/* <Link to="/booking"> Book Now</Link> */}
             </button>
           </div>
         </div>

@@ -15,6 +15,7 @@ import AboutUs from "../pages/Frontend/AboutUs/AboutUs";
 import Contact from "../pages/Frontend/Contact/Contact";
 import Error from "../pages/Error/Error";
 import Booking from "../pages/Frontend/Booking/Booking";
+import ReviewBooking from "../pages/Frontend/Booking/ReviewBooking";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute requiredRole={["admin", "user"]}>
             <Booking />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/booking-confirmation",
+        element: (
+          <ProtectedRoute requiredRole={["user"]}>
+            <ReviewBooking />
           </ProtectedRoute>
         ),
       },
