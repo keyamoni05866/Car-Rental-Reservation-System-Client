@@ -138,47 +138,55 @@ const Booking = () => {
           {" "}
           <div className="lg:flex justify-between mt-16 mb-20 w-full  mx-auto px-0 lg:px-5 ">
             <div className="lg:w-[60%]  mb-16 lg:mb-0">
-              <div className="card card-compact bg-base-100 max-w-[550px] shadow-md rounded-xl  py-5 mx-auto">
-                <div className="bg-base-200 w-full h-[300px] flex justify-center items-center">
+              <div className="card card-compact bg-base-100 max-w-[550px] shadow-md rounded-xl  pb-10 mx-auto">
+                <div className="bg-base-200 w-full h-[250px] rounded-md flex justify-center items-center">
                   <img
                     src={selectedCar?.image}
                     alt="Album"
                     className="lg:w-[50%] h-full"
                   />
                 </div>
-                <div className=" mt-6  ms-10">
-                  <div className="flex gap-2 items-center lg:text-2xl">
-                    <span className="font-semibold">Model:</span>
-                    <p className=" font-light">{selectedCar?.model}</p>
-                  </div>
-                  <div className="flex gap-2 items-center lg:text-2xl">
-                    <span className="font-semibold">Car Type:</span>
-                    <p className=" font-light">{selectedCar?.carType}</p>
-                  </div>
-                  <div className="flex gap-2 items-center lg:text-2xl">
-                    <span className="font-semibold">Availability:</span>
-                    <p className="font-light  uppercase">
-                      {selectedCar?.status}
-                    </p>
+                <div className=" mt-6  mx-10">
+                  <div className="flex  justify-between lg:text-xl">
+                    <div>
+                      <div className="flex gap-2">
+                        {" "}
+                        <span className="font-semibold">Model:</span>
+                        <p className=" font-light">{selectedCar?.model}</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="font-semibold">Car Type:</span>
+                        <p className=" font-light">{selectedCar?.carType}</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="font-semibold">Availability:</span>
+                        <p className="font-light  uppercase">
+                          {selectedCar?.status}
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex ga-2">
+                        <span className="font-semibold">Color:</span>
+                        <p className=" font-light">{selectedCar?.color}</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="font-semibold">Year:</span>
+                        <p className=" font-light">{selectedCar?.year}</p>
+                      </div>
+                    </div>
                   </div>
 
-                  <h4 className=" font-bold  mb-3  lg:text-4xl text-lg uppercase">
+                  <h4 className=" font-bold  mt-2  lg:text-4xl text-lg uppercase">
                     {selectedCar?.name}
                   </h4>
-                  <div className="flex gap-10 mb-2">
-                    <div className="flex gap-2 items-center lg:text-2xl">
-                      <span className="font-semibold">Color:</span>
-                      <p className=" font-light">{selectedCar?.color}</p>
-                    </div>
-                    <div className="flex gap-2 items-center lg:text-2xl">
-                      <span className="font-semibold">Year:</span>
-                      <p className=" font-light">{selectedCar?.year}</p>
-                    </div>
+                  <div className="flex gap-x-2 text-xl">
+                    <span className="font-semibold">Price Per Hour:</span>
+                    <p className=" font-light">${selectedCar?.pricePerHour}</p>
                   </div>
-
-                  <div className="">
+                  <div className=" flex justify-between items-center gap-5">
                     <div className="flex-grow place-items-center">
-                      <h4 className="  ms-2 font-bold text-xl lg:text-2xl mb-2">
+                      <h4 className="  ms-2 font-bold text-xl lg:text-xl mb-2">
                         Features
                       </h4>
 
@@ -195,15 +203,15 @@ const Booking = () => {
 
                     {selectedCar.chosenAdditionalFeatures ? (
                       <>
-                        <div className="  ">
-                          <h4 className="font-bold text-lg lg:text-2xl mt-4 mb-2">
+                        <div className="  mb-16 ">
+                          <h4 className="font-bold text-lg lg:text-xl mt-4 ">
                             {" "}
                             Choosen Additional Features
                           </h4>
 
                           {selectedCar?.chosenAdditionalFeatures?.map(
                             (AdditionalFeature: string) => (
-                              <div className="flex items-center">
+                              <div className="flex items-center  ms-10">
                                 <input
                                   checked
                                   type="checkbox"

@@ -137,13 +137,27 @@ const CarDetails = () => {
 
           <p className="font-light  ">{carDetails?.description}</p>
           <div className=" mt-5 flex justify-end ">
-            <button
-              onClick={handleAddBooking}
-              className="custom-outline-btn lg:w-[50%] w-full  !font-bold !text-xl"
-            >
-              Book Now
-              {/* <Link to="/booking"> Book Now</Link> */}
-            </button>
+            {carDetails?.status === "unavailable" ? (
+              <>
+                {" "}
+                <button
+                  disabled
+                  className="custom-outline-btn lg:w-[50%] w-full  !font-bold !text-xl"
+                >
+                  Not Available
+                </button>
+              </>
+            ) : (
+              <>
+                {" "}
+                <button
+                  onClick={handleAddBooking}
+                  className="custom-outline-btn lg:w-[50%] w-full  !font-bold !text-xl"
+                >
+                  Book Now
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>

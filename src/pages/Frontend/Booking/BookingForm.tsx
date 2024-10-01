@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import {
   bookingConfirmWithForm,
-  useBookedCar,
+  useBookingConfirm,
 } from "../../../Redux/features/booking/bookingSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../Redux/hook";
@@ -16,7 +16,7 @@ const BookingForm = () => {
   } = useForm<any>();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const selectedCar: any = useAppSelector(useBookedCar);
+  const selectedCarWithForm: any = useAppSelector(useBookingConfirm);
   const onSubmit: SubmitHandler<any> = async (data) => {
     // console.log(data);
 
@@ -123,11 +123,11 @@ const BookingForm = () => {
       </div>
 
       <div className=" flex">
-        {selectedCar ? (
+        {selectedCarWithForm.length !== 0 ? (
           <>
             <div className=" w-full mt-5 text-lg font-semibold">
               <h4 className="text-center">
-                You Already Filled Your Information
+                You Have Already Filled Your Information
               </h4>
               <span className="text-center  ms-5">
                 {" "}
