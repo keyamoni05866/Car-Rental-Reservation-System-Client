@@ -9,6 +9,7 @@ import bookingImage from "../assets/booking.png";
 import carImage from "../assets/car.png";
 import contactImage from "../assets/contact.png";
 import aboutImage from "../assets/about.png";
+import logo from "../assets/logo.png";
 const { Sider } = Layout;
 const DashboardSidebar = () => {
   const userRole = {
@@ -46,7 +47,7 @@ const DashboardSidebar = () => {
           alignItems: "center",
         }}
       >
-        <h2>RENTCARS</h2>
+        <img src={logo} alt="" className="size-8" /> <h2>CityCar Rental</h2>
       </div>
       <Menu
         theme="dark"

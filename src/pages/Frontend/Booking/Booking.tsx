@@ -99,7 +99,7 @@ const Booking = () => {
             Search
           </button>
         </div>
-        <div className="lg:flex justify-between  mt-16 mb-20 w-full ">
+        <div className="lg:flex justify-between gap-x-8 mt-16 mb-20 w-full ">
           <div className="grid lg:grid-cols-2 grid-cols-1 w-full lg:w-[60%] gap-8 mt-10 lg:mb-0  mb-20">
             {searchResults && searchResults?.length > 0 ? (
               searchResults?.map((car: TCar) => (

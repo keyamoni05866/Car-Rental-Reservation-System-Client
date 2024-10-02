@@ -38,7 +38,18 @@ const bookingApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["booking"],
     }),
+    // approve Bookings
+    approveBooking: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/bookings/approve-booking/${id}`,
+          method: "PATCH",
+        };
+      },
+      invalidatesTags: ["booking"],
+    }),
 
+    // cancel booking from  user side
     cancelBookingOrDelete: builder.mutation({
       query: (id) => {
         return {
@@ -48,6 +59,30 @@ const bookingApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["booking"],
     }),
+    // cancel booking from admin side
+    cancelBookingOrDeleteFromAdminSide: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/bookings/cancel-booking/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["booking"],
+    }),
+
+    getAllConfirmBookings: builder.query({
+      query: (params) => ({
+        url: "/bookings",
+        method: "GET",
+        params,
+      }),
+      providesTags: ["booking"],
+      transformResponse: (response: TResponseRedux<TBooked[]>) => {
+        return {
+          data: response.data,
+        };
+      },
+    }),
   }),
 });
 
@@ -56,4 +91,7 @@ export const {
   useGetAllBookingsQuery,
   useGetUserBookingsQuery,
   useCancelBookingOrDeleteMutation,
+  useCancelBookingOrDeleteFromAdminSideMutation,
+  useApproveBookingMutation,
+  useGetAllConfirmBookingsQuery,
 } = bookingApi;

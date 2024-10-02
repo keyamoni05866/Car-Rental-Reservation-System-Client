@@ -1,4 +1,5 @@
 import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
+import ManageBooking from "../pages/Dashboard/Admin/ManageBooking/ManageBooking";
 import CarUpdate from "../pages/Dashboard/Admin/ManageCars/CarUpdate";
 import ManageCars from "../pages/Dashboard/Admin/ManageCars/ManageCars";
 import ManageUser from "../pages/Dashboard/Admin/UserManagement/ManageUser/ManageUser";
@@ -31,6 +32,18 @@ export const adminPaths = [
     element: (
       <ProtectedRoute requiredRole={["admin"]}>
         <CarUpdate />
+      </ProtectedRoute>
+    ),
+  },
+
+  // Booking management
+
+  {
+    name: "Manage Bookings",
+    path: "manage-bookings",
+    element: (
+      <ProtectedRoute requiredRole={["admin"]}>
+        <ManageBooking />
       </ProtectedRoute>
     ),
   },
