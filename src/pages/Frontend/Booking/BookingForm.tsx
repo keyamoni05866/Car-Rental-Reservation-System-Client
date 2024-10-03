@@ -30,7 +30,7 @@ const BookingForm = () => {
       </h4>
       <div className="grid grid-cols-1  gap-2  mt-3 mb-4">
         <div className="">
-          <label className="block text-sm font-medium leading-6 text-gray-900">
+          <label className="block text-sm font-medium leading-6 ">
             NID/Passport :
           </label>
           <div className="relative  rounded-md shadow-sm">
@@ -46,7 +46,7 @@ const BookingForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium leading-6 text-gray-900">
+          <label className="block text-sm font-medium leading-6 ">
             Driving License :
           </label>
           <div className="relative mt-2 rounded-md shadow-sm">
@@ -62,7 +62,7 @@ const BookingForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium leading-6 text-gray-900">
+          <label className="block text-sm font-medium leading-6 ">
             Card Number:
           </label>
           <div className="relative mt-2 rounded-md shadow-sm">
@@ -78,7 +78,7 @@ const BookingForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium leading-6 text-gray-900">
+          <label className="block text-sm font-medium leading-6 ">
             Expiration Date :
           </label>
           <div className="relative mt-2 rounded-md shadow-sm">
@@ -86,7 +86,7 @@ const BookingForm = () => {
               type="month"
               {...register("cardExpirationdate", { required: "required" })}
               placeholder="Enter Your Password"
-              className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
             />
           </div>
           {errors.cardExpirationdate && (
@@ -94,9 +94,7 @@ const BookingForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            Cvv :
-          </label>
+          <label className="block text-sm font-medium leading-6 ">Cvv :</label>
           <div className="relative mt-2 rounded-md shadow-sm">
             <input
               type="text"
@@ -108,14 +106,14 @@ const BookingForm = () => {
           {errors.cvv && <p className="mt-2 text-sm text-red-600">Required</p>}
         </div>
         <div>
-          <label className="block text-sm font-medium leading-6 text-gray-900">
+          <label className="block text-sm font-medium leading-6 ">
             Booking Start Date & Time :
           </label>
           <div className="relative mt-2 rounded-md shadow-sm">
             <input
               type="datetime-local"
               {...register("startTime", { required: "required" })}
-              className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
             />
           </div>
           {errors.cvv && <p className="mt-2 text-sm text-red-600">Required</p>}

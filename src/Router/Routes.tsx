@@ -16,6 +16,8 @@ import Contact from "../pages/Frontend/Contact/Contact";
 import Error from "../pages/Error/Error";
 import Booking from "../pages/Frontend/Booking/Booking";
 import ReviewBooking from "../pages/Frontend/Booking/ReviewBooking";
+import TermsAndCondtions from "../pages/Frontend/Terms&Policy/TermsAndCondtions";
+import PrivacyPolicy from "../pages/Frontend/Terms&Policy/PrivacyPolicy";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/terms&conditions",
+        element: <TermsAndCondtions />,
+      },
+      {
+        path: "/privacy&policy",
+        element: <PrivacyPolicy />,
       },
       {
         path: "/booking",

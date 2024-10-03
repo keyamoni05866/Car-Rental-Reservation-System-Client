@@ -1,6 +1,6 @@
 const Contact = () => {
   return (
-    <div className="lg:mx-[120px] lg:pb-40 px-4 lg:px-0">
+    <div className="lg:mx-[120px] lg:pb-40 px-4 lg:px-0 ">
       <h4 className="primary-color lg:text-4xl text-2xl font-bold text-center mt-5">
         Contact Us
       </h4>
@@ -143,56 +143,56 @@ const Contact = () => {
             <form>
               <div className="grid lg:grid-cols-2  gap-2  mt-3 mb-4 ">
                 <div className="">
-                  <label className="block text-sm font-medium leading-6 text-gray-900 mb-3">
+                  <label className="block text-sm font-medium leading-6  mb-3">
                     First Name :
                   </label>
                   <div className="relative  rounded-md shadow-sm">
                     <input
                       type="text"
                       placeholder="Enter Your First Name"
-                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
                 <div className="">
-                  <label className="block text-sm font-medium leading-6 text-gray-900 mb-3">
+                  <label className="block text-sm font-medium leading-6 mb-3">
                     Last Name :
                   </label>
                   <div className="relative  rounded-md shadow-sm">
                     <input
                       type="text"
                       placeholder="Enter Last Your Name"
-                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
               </div>
               <div className="mt-4">
-                <label className="block text-sm font-medium leading-6 text-gray-900">
+                <label className="block text-sm font-medium leading-6 ">
                   Email :
                 </label>
                 <div className="relative mt-2 rounded-md shadow-sm">
                   <input
                     type="email"
                     placeholder="Enter Your Email Address"
-                    className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
               <div className="mt-4">
-                <label className="block text-sm font-medium leading-6 text-gray-900">
+                <label className="block text-sm font-medium leading-6 ">
                   Phone Number :
                 </label>
                 <div className="relative mt-2 rounded-md shadow-sm">
                   <input
                     type="text"
                     placeholder="Enter Your Phone Number"
-                    className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
               <div className="mt-4">
-                <label className="block text-sm font-medium leading-6 text-gray-900 mt-2">
+                <label className="block text-sm font-medium leading-6 mt-2">
                   Message :
                 </label>
                 <div className="relative mt-2 rounded-md shadow-sm">

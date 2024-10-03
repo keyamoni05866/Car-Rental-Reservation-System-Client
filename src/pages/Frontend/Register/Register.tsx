@@ -68,7 +68,7 @@ const Register = () => {
               </h4>
               <div className="grid grid-cols-1  gap-2  mt-3 mb-4">
                 <div className="">
-                  <label className="block text-sm font-medium leading-6 text-gray-900">
+                  <label className="block text-sm font-medium leading-6">
                     Name :
                   </label>
                   <div className="relative  rounded-md shadow-sm">
@@ -86,7 +86,7 @@ const Register = () => {
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium leading-6 text-gray-900">
+                  <label className="block text-sm font-medium leading-6 ">
                     Email :
                   </label>
                   <div className="relative mt-2 rounded-md shadow-sm">
@@ -110,7 +110,7 @@ const Register = () => {
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium leading-6 text-gray-900">
+                  <label className="block text-sm font-medium leading-6 ">
                     Phone Number (optional):
                   </label>
                   <div className="relative mt-2 rounded-md shadow-sm">
@@ -123,7 +123,7 @@ const Register = () => {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium leading-6 text-gray-900">
+                  <label className="block text-sm font-medium leading-6 ">
                     Password :
                   </label>
                   <div className="relative mt-2 rounded-md shadow-sm">
@@ -148,7 +148,7 @@ const Register = () => {
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium leading-6 text-gray-900">
+                  <label className="block text-sm font-medium leading-6 ">
                     Confirm Password :
                   </label>
                   <div className="relative mt-2 rounded-md shadow-sm">
@@ -178,14 +178,14 @@ const Register = () => {
                     required: "Please Accept Our Terms & Conditions",
                   })}
                 />
-                <label className="ml-2 block text-sm text-gray-900">
+                <label className="ml-2 block text-sm ">
                   I agree to the
-                  <a
-                    href="/terms"
+                  <Link
+                    to="/terms&conditions"
                     className=" primary-color ms-2 hover:underline"
                   >
                     Terms & Conditions
-                  </a>
+                  </Link>
                 </label>
               </div>
               {errors.termsConditionAccepted && (
@@ -204,7 +204,7 @@ const Register = () => {
 
               <div className="flex justify-center items-center mt-2">
                 <label className="label">
-                  <p className="text-sm text-black">
+                  <p className="text-sm ">
                     Already have an account ?{" "}
                     <Link
                       to="/login"
@@ -216,6 +216,15 @@ const Register = () => {
                 </label>
               </div>
             </form>
+            <div className="mt-2 text-center text-md text-gray-500">
+              <Link to="/privacy&policy" className="hover:underline">
+                Privacy Policy
+              </Link>{" "}
+              &bull;{" "}
+              <Link to="/terms&conditions" className="hover:underline">
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </div>
       </div>

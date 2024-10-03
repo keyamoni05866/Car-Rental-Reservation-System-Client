@@ -59,7 +59,7 @@ const Login = () => {
               </h4>
 
               <div>
-                <label className="block text-sm font-medium leading-6 text-gray-900">
+                <label className="block text-sm font-medium leading-6 ">
                   Email :
                 </label>
                 <div className="relative mt-2 rounded-md shadow-sm">
@@ -83,7 +83,7 @@ const Login = () => {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium leading-6 text-gray-900">
+                <label className="block text-sm font-medium leading-6 ">
                   Password :
                 </label>
                 <div className="relative mt-2 rounded-md shadow-sm">
@@ -116,7 +116,7 @@ const Login = () => {
               <div></div>
               <div>
                 <label className="label">
-                  <p className="text-sm text-black">
+                  <p className="text-sm ">
                     You don't have an account ?{" "}
                     <Link
                       to="/register"
@@ -129,6 +129,15 @@ const Login = () => {
               </div>
             </div>
           </form>
+          <div className="mt-2 text-center text-md text-gray-500">
+            <Link to="/privacy&policy" className="hover:underline">
+              Privacy Policy
+            </Link>{" "}
+            &bull;{" "}
+            <Link to="/terms&conditions" className="hover:underline">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </div>

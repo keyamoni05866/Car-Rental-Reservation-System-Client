@@ -32,7 +32,7 @@ const AboutUs = () => {
             <button className="custom-btn !rounded-md">Company</button>
             <Link
               to="/cars"
-              className="custom-outline-btn !rounded-md  lg:w-[24%] !font-bold !text-lg"
+              className="custom-outline-btn !rounded-md  !text-black dark:text-white lg:w-[24%] !font-bold !text-lg"
             >
               Cars
             </Link>
