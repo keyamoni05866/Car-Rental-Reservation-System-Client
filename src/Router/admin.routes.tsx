@@ -2,6 +2,7 @@ import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
 import ManageBooking from "../pages/Dashboard/Admin/ManageBooking/ManageBooking";
 import CarUpdate from "../pages/Dashboard/Admin/ManageCars/CarUpdate";
 import ManageCars from "../pages/Dashboard/Admin/ManageCars/ManageCars";
+import ManageReturnCar from "../pages/Dashboard/Admin/ManageReturnCars/ManageReturnCar";
 import ManageUser from "../pages/Dashboard/Admin/UserManagement/ManageUser/ManageUser";
 import UpdateUser from "../pages/Dashboard/Admin/UserManagement/ManageUser/UpdateUser";
 import RoleManagement from "../pages/Dashboard/Admin/UserManagement/RoleManagement";
@@ -44,6 +45,16 @@ export const adminPaths = [
     element: (
       <ProtectedRoute requiredRole={["admin"]}>
         <ManageBooking />
+      </ProtectedRoute>
+    ),
+  },
+  // manage return car
+  {
+    name: "Manage Return Cars",
+    path: "manage-return-cars",
+    element: (
+      <ProtectedRoute requiredRole={["admin"]}>
+        <ManageReturnCar />
       </ProtectedRoute>
     ),
   },

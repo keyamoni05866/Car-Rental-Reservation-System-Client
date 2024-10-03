@@ -15,5 +15,6 @@ export type TBooked = {
   endTime?: string;
   totalCost?: number;
   isBooked?: "confirmed" | "unconfirmed";
+  isReturned?: boolean;
   payment?: TBookingForm;
 };

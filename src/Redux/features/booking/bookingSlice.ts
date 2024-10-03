@@ -1,28 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TBooked, TBookingForm } from "../../../Types";
+import { TBookingForm } from "../../../Types";
 import { RootState } from "../../store";
 
-type TBooking = {
-  id: string;
-  date: string;
-  time: string;
-  status: "pending" | "confirmed" | "cancelled";
-  approve: boolean;
-};
-
 type TBookingState = {
-  bookings: TBooking[];
-  booked: TBooked[];
-  returnCar: TBooked[];
   bookingCar: TBookingForm[];
   confirmBooking: any;
   paymentInfo: any;
 };
 
 const initialState: TBookingState = {
-  bookings: [],
-  booked: [],
-  returnCar: [],
   bookingCar: [],
   confirmBooking: [],
   paymentInfo: [],

@@ -4,10 +4,9 @@ import { baseApi } from "../../api/baseApi";
 const bookingApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllBookings: builder.query({
-      query: (params) => ({
+      query: () => ({
         url: "/bookings",
         method: "GET",
-        params,
       }),
       providesTags: ["booking"],
       transformResponse: (response: TResponseRedux<TBooked[]>) => {
@@ -71,10 +70,9 @@ const bookingApi = baseApi.injectEndpoints({
     }),
 
     getAllConfirmBookings: builder.query({
-      query: (params) => ({
-        url: "/bookings",
+      query: () => ({
+        url: "/bookings/confirm-bookings",
         method: "GET",
-        params,
       }),
       providesTags: ["booking"],
       transformResponse: (response: TResponseRedux<TBooked[]>) => {
@@ -82,6 +80,18 @@ const bookingApi = baseApi.injectEndpoints({
           data: response.data,
         };
       },
+    }),
+
+    // return Car
+    returnCar: builder.mutation({
+      query: (body) => {
+        return {
+          url: "/bookings/return",
+          method: "PUT",
+          body,
+        };
+      },
+      invalidatesTags: ["booking"],
     }),
   }),
 });
@@ -94,4 +104,5 @@ export const {
   useCancelBookingOrDeleteFromAdminSideMutation,
   useApproveBookingMutation,
   useGetAllConfirmBookingsQuery,
+  useReturnCarMutation,
 } = bookingApi;
