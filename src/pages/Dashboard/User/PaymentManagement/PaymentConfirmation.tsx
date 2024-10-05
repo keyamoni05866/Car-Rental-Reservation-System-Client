@@ -15,7 +15,7 @@ const PaymentConfirmation = () => {
 
   const handleConfirmPayment = async () => {
     const res = await payment(paymentInfo).unwrap();
-    window.location.href = res.data.payment_url;
+    window.location.href = res?.data?.payment_url;
     dispatch(clearPaymentInformationState(paymentInfo));
   };
 

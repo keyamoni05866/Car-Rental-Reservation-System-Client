@@ -12,7 +12,7 @@ type TSignUpFormData = {
   password: string;
   confirmPassword: string;
   role: "user";
-  phone?: string;
+  phone: string;
   termsConditionAccepted: boolean;
 };
 
@@ -111,16 +111,23 @@ const Register = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium leading-6 ">
-                    Phone Number (optional):
+                    Phone Number:
                   </label>
                   <div className="relative mt-2 rounded-md shadow-sm">
                     <input
                       type="text"
-                      {...register("phone")}
+                      {...register("phone", {
+                        required: "Phone Number is required",
+                      })}
                       placeholder="Enter Your Phone Number"
                       className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                     />
                   </div>
+                  {errors.phone && (
+                    <p className="mt-2 text-sm text-red-600">
+                      {errors.phone.message}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-medium leading-6 ">
