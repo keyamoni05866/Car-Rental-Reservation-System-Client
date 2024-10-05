@@ -60,8 +60,6 @@ const UserProfile = () => {
   };
   return (
     <div>
-      <div className="divider text-lg font-bold ">Your Information</div>
-
       {/* Profile Mangement*/}
       <div className="lg:flex   lg:justify-center lg:gap-7 mb-10">
         {/* user Information */}

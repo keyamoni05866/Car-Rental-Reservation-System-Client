@@ -10,7 +10,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 export const adminPaths = [
   {
-    name: "Admin Dashboard",
+    name: "Dashboard Overview",
     path: "dashboard",
     element: (
       <ProtectedRoute requiredRole={["admin"]}>
