@@ -93,6 +93,18 @@ const bookingApi = baseApi.injectEndpoints({
         };
       },
     }),
+    bookingHistory: builder.query({
+      query: () => ({
+        url: "/bookings/user-booking-history",
+        method: "GET",
+      }),
+      providesTags: ["booking"],
+      transformResponse: (response: TResponseRedux<TBooked[]>) => {
+        return {
+          data: response.data,
+        };
+      },
+    }),
 
     // return Car
     returnCar: builder.mutation({
@@ -132,4 +144,5 @@ export const {
   useReturnCarMutation,
   useGetUserBookingsAfterCarReturnedQuery,
   usePaymentMutation,
+  useBookingHistoryQuery,
 } = bookingApi;

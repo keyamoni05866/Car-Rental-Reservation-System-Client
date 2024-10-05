@@ -1,4 +1,5 @@
 import BookingManage from "../pages/Dashboard/User/BookingManage/BookingManage";
+import BookingHistory from "../pages/Dashboard/User/DashboardOverview/BookingHistory/BookingHistory";
 import UserProfile from "../pages/Dashboard/User/DashboardOverview/UserProfile/UserProfile";
 import PaymentConfirmation from "../pages/Dashboard/User/PaymentManagement/PaymentConfirmation";
 import PaymentMange from "../pages/Dashboard/User/PaymentManagement/PaymentMange";
@@ -20,23 +21,39 @@ export const userPaths = [
       {
         name: "Booking History",
         path: "booking-history",
-        // element: <ManageUser />,
+        element: (
+          <ProtectedRoute requiredRole={["user"]}>
+            <BookingHistory />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
   {
     name: "Booking Management",
     path: "booking-management",
-    element: <BookingManage />,
+    element: (
+      <ProtectedRoute requiredRole={["user"]}>
+        <BookingManage />
+      </ProtectedRoute>
+    ),
   },
   {
     name: "Payment Management",
     path: "payment-management",
-    element: <PaymentMange />,
+    element: (
+      <ProtectedRoute requiredRole={["user"]}>
+        <PaymentMange />
+      </ProtectedRoute>
+    ),
   },
   {
     name: "",
     path: "payment-confirmation",
-    element: <PaymentConfirmation />,
+    element: (
+      <ProtectedRoute requiredRole={["user"]}>
+        <PaymentConfirmation />
+      </ProtectedRoute>
+    ),
   },
 ];
