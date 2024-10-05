@@ -16,8 +16,20 @@ const bookingApi = baseApi.injectEndpoints({
       },
     }),
     getUserBookings: builder.query({
-      query: (params) => ({
+      query: () => ({
         url: "/bookings/my-bookings",
+        method: "GET",
+      }),
+      providesTags: ["booking"],
+      transformResponse: (response: TResponseRedux<TBooked[]>) => {
+        return {
+          data: response.data,
+        };
+      },
+    }),
+    getUserBookingsAfterCarReturned: builder.query({
+      query: (params) => ({
+        url: "/bookings/my-bookings-afterReturn",
         method: "GET",
         params,
       }),
@@ -93,6 +105,19 @@ const bookingApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["booking"],
     }),
+
+    // payment
+
+    payment: builder.mutation({
+      query: (body) => {
+        return {
+          url: "/bookings/payment",
+          method: "POST",
+          body,
+        };
+      },
+      invalidatesTags: ["booking"],
+    }),
   }),
 });
 
@@ -105,4 +130,6 @@ export const {
   useApproveBookingMutation,
   useGetAllConfirmBookingsQuery,
   useReturnCarMutation,
+  useGetUserBookingsAfterCarReturnedQuery,
+  usePaymentMutation,
 } = bookingApi;

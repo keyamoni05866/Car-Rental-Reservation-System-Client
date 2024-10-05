@@ -1,5 +1,7 @@
 import BookingManage from "../pages/Dashboard/User/BookingManage/BookingManage";
 import UserProfile from "../pages/Dashboard/User/DashboardOverview/UserProfile/UserProfile";
+import PaymentConfirmation from "../pages/Dashboard/User/PaymentManagement/PaymentConfirmation";
+import PaymentMange from "../pages/Dashboard/User/PaymentManagement/PaymentMange";
 import ProtectedRoute from "./ProtectedRoute";
 
 export const userPaths = [
@@ -26,5 +28,15 @@ export const userPaths = [
     name: "Booking Management",
     path: "booking-management",
     element: <BookingManage />,
+  },
+  {
+    name: "Payment Management",
+    path: "payment-management",
+    element: <PaymentMange />,
+  },
+  {
+    name: "",
+    path: "payment-confirmation",
+    element: <PaymentConfirmation />,
   },
 ];

@@ -109,11 +109,11 @@ const RoleManagement = () => {
                 >
                   {user.role === "admin" ? (
                     <button className="me-2 mb-2 btn btn-xs lg:btn-sm">
-                      Demote To User
+                      Make User
                     </button>
                   ) : (
-                    <button className="me-2 mb-2 btn btn-xs lg:btn-sm">
-                      Promote To Admin
+                    <button className="me-2 mb-2 custom-btn  !pt-1 !pb-1 lg:btn-sm btn-xs">
+                      Make Admin
                     </button>
                   )}
                 </div>

@@ -16,14 +16,20 @@ const Footer = () => {
           <Link to="/aboutUs" className="link link-hover">
             About us
           </Link>
-          <a className="link link-hover">Contact</a>
+          <Link to="/contact" className="link link-hover">
+            Contact
+          </Link>
           <a className="link link-hover">Jobs</a>
           <a className="link link-hover">Press kit</a>
         </nav>
         <nav>
           <h6 className="footer-title">Legal</h6>
-          <a className="link link-hover">Terms of use</a>
-          <a className="link link-hover">Privacy policy</a>
+          <Link to="/terms&conditions" className="link link-hover">
+            Terms of use
+          </Link>
+          <Link to="/privacy&policy" className="link link-hover">
+            Privacy policy
+          </Link>
           <a className="link link-hover">Cookie policy</a>
         </nav>
         <nav className=" ">

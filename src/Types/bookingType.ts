@@ -14,6 +14,7 @@ export type TBooked = {
   carId?: string;
   endTime?: string;
   totalCost?: number;
+  paymentStatus?: "pending" | "paid";
   isBooked?: "confirmed" | "unconfirmed";
   isReturned?: boolean;
   payment?: TBookingForm;

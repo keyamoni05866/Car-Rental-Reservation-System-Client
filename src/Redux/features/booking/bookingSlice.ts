@@ -27,6 +27,12 @@ export const bookingSlice = createSlice({
       state.bookingCar = [];
       state.confirmBooking = [];
     },
+    paymentInformation: (state, action) => {
+      state.paymentInfo = action.payload;
+    },
+    clearPaymentInformationState: (state) => {
+      state.paymentInfo = [];
+    },
   },
 });
 
@@ -34,10 +40,13 @@ export const {
   bookingCar,
   bookingConfirmWithForm,
   clearBookingStateAfterConfirm,
+  paymentInformation,
+  clearPaymentInformationState,
 } = bookingSlice.actions;
 
 export const useBookedCar = (state: RootState) => state.booking.bookingCar;
 export const useBookingConfirm = (state: RootState) =>
   state.booking.confirmBooking;
+export const usePaymentInfo = (state: RootState) => state.booking.paymentInfo;
 
 export default bookingSlice.reducer;
