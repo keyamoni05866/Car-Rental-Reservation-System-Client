@@ -1,8 +1,5 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  useAddCarMutation,
-  useCarDetailsQuery,
-} from "../../../Redux/api/CarApi/carApi";
+import { useNavigate, useParams } from "react-router-dom";
+import { useCarDetailsQuery } from "../../../Redux/api/CarApi/carApi";
 import { Key, useState } from "react";
 import { TCar } from "../../../Types";
 import { useDispatch } from "react-redux";

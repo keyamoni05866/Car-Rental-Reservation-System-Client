@@ -1,8 +1,5 @@
 import { useGetAllBookingsQuery } from "../../../Redux/api/BookingApi/bookingApi";
-import {
-  useGetAvailableCarsForBookingQuery,
-  useGetCarsQuery,
-} from "../../../Redux/api/CarApi/carApi";
+import { useGetAvailableCarsForBookingQuery } from "../../../Redux/api/CarApi/carApi";
 import { useGetUsersQuery } from "../../../Redux/api/UserApi/UserApi";
 
 const AdminDashboard = () => {
@@ -14,11 +11,6 @@ const AdminDashboard = () => {
   const availableCar = availableCars?.data;
   const totalBooking = totalBookings?.data;
   const allUser = allUsers?.data;
-
-  // const totalRevenue = totalBooking?.reduce(
-  //   (arr, item) => arr + Number(item?.totalCost),
-  //   0
-  // );
 
   const totalRevenue = totalBooking?.reduce(
     (arr, item) => arr + Number(item?.totalCost),

@@ -1,8 +1,5 @@
 import "./About.css";
 const Fleet = () => {
-  {
-    /* ["SUV", "Sedan", "Hatchback", "Convertible", "Coupe" */
-  }
   return (
     <div className="custom-background mt-8 ">
       <h4 className="text-center text-white  pt-10 lg:pt-6 lg:text-3xl">

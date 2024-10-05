@@ -5,7 +5,6 @@ import {
   useGetAllBookingsQuery,
 } from "../../../../Redux/api/BookingApi/bookingApi";
 import { toast } from "sonner";
-import { Link } from "react-router-dom";
 
 const ManageBooking = () => {
   const { data: bookings, isLoading } = useGetAllBookingsQuery({});

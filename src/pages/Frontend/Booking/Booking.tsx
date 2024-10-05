@@ -1,16 +1,12 @@
-import { Key, useEffect, useState } from "react";
+import { Key, useState } from "react";
 import { useGetAvailableCarsForBookingQuery } from "../../../Redux/api/CarApi/carApi";
 import { TCar } from "../../../Types";
-import { Link } from "react-router-dom";
+
 import SearchedCar from "./SearchedCar";
-import { useForm } from "react-hook-form";
+
 import BookingForm from "./BookingForm";
 import { useAppSelector } from "../../../Redux/hook";
-import {
-  bookingCar,
-  useBookedCar,
-} from "../../../Redux/features/booking/bookingSlice";
-import { useDispatch } from "react-redux";
+import { useBookedCar } from "../../../Redux/features/booking/bookingSlice";
 
 const Booking = () => {
   const [name, setName] = useState("");

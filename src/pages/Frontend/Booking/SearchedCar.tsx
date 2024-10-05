@@ -1,11 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { TCar } from "../../../Types";
-import { useState } from "react";
+
 import { useDispatch } from "react-redux";
 import { bookingCar } from "../../../Redux/features/booking/bookingSlice";
 
 const SearchedCar = ({ car }: { car: TCar }) => {
-  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

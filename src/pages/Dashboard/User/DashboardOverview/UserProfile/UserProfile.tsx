@@ -24,12 +24,8 @@ export type TUpdateUserFormData = {
 const UserProfile = () => {
   const user = useAppSelector(currentUser) as unknown as TUser;
   const { isLoading } = useGetUsersQuery({});
-  // console.log(user);
-  // const user = users?.data?.find((item: TUser) => item._id === stateUser.email);
   const token = useAppSelector(currentToken);
 
-  console.log(user);
-  // const { address, email, name, phone, _id } = user;
   const { register, handleSubmit } = useForm<TUpdateUserFormData>();
   const [updateUser] = useUpdateUserMutation();
   const dispatch = useAppDispatch();

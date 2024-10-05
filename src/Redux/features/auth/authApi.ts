@@ -16,6 +16,7 @@ const authApi = baseApi.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["users"],
     }),
   }),
 });

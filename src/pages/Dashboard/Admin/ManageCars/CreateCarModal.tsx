@@ -32,6 +32,12 @@ const CreateCarModal = () => {
             ?.split(",")
             .map((feature: string) => feature.trim());
         }
+        if (typeof data.AdditionalFeatures === "string") {
+          data.AdditionalFeatures = (data.AdditionalFeatures as string)
+            ?.split(",")
+            .map((additionalFeature: string) => additionalFeature.trim());
+        }
+
         data.pricePerHour = Number(data.pricePerHour);
 
         try {

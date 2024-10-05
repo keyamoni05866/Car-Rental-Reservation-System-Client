@@ -70,9 +70,9 @@ const AboutUs = () => {
         <div className="shadow-lg w-[300px] h-[240px] p-8 text-justify rounded-lg bg-base-200">
           <p>
             <span className="font-semibold me-2">Our Values:</span>
-            At RENT Cars, we go beyond just providing cars. We are committed to
-            giving our customers a seamless, eco-friendly, and safe car rental
-            experience, backed by exceptional customer service.
+            At CityCar Rental, we go beyond just providing cars. We are
+            committed to giving our customers a seamless, eco-friendly, and safe
+            car rental experience, backed by exceptional customer service.
           </p>
         </div>
       </div>

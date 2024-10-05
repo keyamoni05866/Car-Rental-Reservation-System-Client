@@ -28,8 +28,8 @@ const Login = () => {
     try {
       const res = (await loginUser(data).unwrap()) as TResponse<any>;
       toast.success("logged In", { id: toastId, duration: 1000 });
-      const userInfo = res?.data.user;
-      const token = res?.data.token;
+      const userInfo = res?.data?.user;
+      const token = res?.data?.token;
       dispatch(signUser({ userInfo, token }));
 
       if (userInfo.role === "admin") {
