@@ -113,7 +113,7 @@ const Navbar = () => {
               <Link to="/booking">Booking</Link>
             </li>
 
-            {userInfo ? (
+            {/* {userInfo ? (
               <li>
                 {userInfo.role === "admin" ? (
                   <Link to={`/${userInfo?.role}/dashboard`}>Dashboard</Link>
@@ -125,7 +125,7 @@ const Navbar = () => {
               </li>
             ) : (
               <></>
-            )}
+            )} */}
           </ul>
         </div>
         <div className="navbar-end ">
@@ -157,12 +157,38 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
-          <Link to="/login" className=" text-[15px] font-medium mt-1  me-5  ">
-            Sign In
-          </Link>
-          <Link to="/register" className="custom-btn mt-1  ">
-            Sign up
-          </Link>
+
+          {!userInfo ? (
+            <div>
+              <Link
+                to="/login"
+                className=" text-[15px] font-medium mt-1  me-5  "
+              >
+                Sign In
+              </Link>
+              <Link to="/register" className="custom-btn mt-1  ">
+                Sign up
+              </Link>
+            </div>
+          ) : (
+            <div>
+              {userInfo.role === "admin" ? (
+                <Link
+                  className="custom-btn mt-1  "
+                  to={`/${userInfo?.role}/dashboard`}
+                >
+                  Dashboard
+                </Link>
+              ) : (
+                <Link
+                  className="custom-btn mt-1  "
+                  to={`/${userInfo?.role}/profile-management`}
+                >
+                  Dashboard
+                </Link>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

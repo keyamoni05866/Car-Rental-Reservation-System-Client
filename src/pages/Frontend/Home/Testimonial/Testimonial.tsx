@@ -13,7 +13,7 @@ import pic6 from "../../../../assets/HomePagePhotos/testimonialPictures/image6.p
 
 const Testimonial = () => {
   return (
-    <div className="mt-32 mb-40">
+    <div className=" mb-32">
       <div className="bg-[#cfe4fa]   w-[180px] h-[50px] mx-auto rounded-xl">
         {" "}
         <h4 className="primary-color uppercase font-[540] lg:text-md text-[15px]  text-center  pt-3 ">

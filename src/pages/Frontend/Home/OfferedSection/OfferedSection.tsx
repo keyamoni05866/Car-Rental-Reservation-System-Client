@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { useGetFeaturedCarsQuery } from "../../../../Redux/api/CarApi/carApi";
+import { useGetAvailableCarsForBookingQuery } from "../../../../Redux/api/CarApi/carApi";
 import { TCar } from "../../../../Types";
 
-const FeaturedCars = () => {
-  const { data: cars, isLoading } = useGetFeaturedCarsQuery({});
+const OfferedSection = () => {
+  const { data: cars, isLoading } = useGetAvailableCarsForBookingQuery({});
 
   if (isLoading) {
     return (
@@ -12,58 +12,47 @@ const FeaturedCars = () => {
       </div>
     );
   }
-
   return (
-    <div className="mb-32   mx-5 lg:mx-0 ">
+    <div className="mb-32 mx-5 lg:mx-0 ">
       <div className="bg-[#cfe4fa]   w-[180px] h-[50px] mx-auto rounded-xl">
         {" "}
         <h4 className="primary-color uppercase font-[540] lg:text-md text-[15px]  text-center  pt-3 ">
-          Featured Rentals
+          Hot Deals
         </h4>
       </div>
       <h4 className="lg:text-[38px] mt-4 text-center text-lg font-bold">
-        Drive Our Featured Cars!!
+        Drive into Savings!!
       </h4>
 
-      <div className="lg:mt-16  mt-10 grid lg:grid-cols-3 gap-y-5 xl:gap-6 lg:mx-4 xl:max-w-[90%] xl:mx-auto ">
+      <div className="lg:mt-16  mt-10  grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 gap-4 xl:mx-auto mx-4     ">
         {cars?.data && cars?.data?.length > 0 ? (
-          cars?.data?.map((car: TCar) => (
+          cars?.data?.slice(0, 4).map((car: TCar) => (
             <div
               key={car._id}
-              className="card card-compact bg-base-100 lg:max-w-[320px] xl:max-w-[380px] shadow-md rounded-[3px] mx-auto"
+              className="card card-compact bg-base-100 lg:max-w-[240px] xl:max-w-[340px] shadow-md  mx-auto hover:scale-95 duration-300 rounded-xl "
             >
-              <div className="lg:w-[320px] xl:w-[380px]  h-[200px] flex justify-center items-center">
+              <div className=" lg:w-[240px] xl:w-[300px]  h-[100px] flex justify-center items-center">
                 <img
                   src={car.image}
                   alt="Product Picture"
                   className=" w-full h-full "
                 />
               </div>
-              <div className=" my-2 ">
+              <div className=" my-2  ">
                 <div className="mx-7">
                   <h3 className="card-title">{car?.name}</h3>
-                  <div className="flex justify-between mb-2">
+                  <div className="flex justify-between mb-2 xl:text-lg lg:text-[12px]">
                     {" "}
-                    <h4 className="text-lg ">
+                    <h4 className=" ">
                       <span className="font-semibold ">Car Type:</span>{" "}
                       {car?.carType}
                     </h4>
-                    <h4 className="text-lg ">
+                    <h4 className="">
                       <span className="font-semibold "> Color:</span>{" "}
                       {car?.color}
                     </h4>
                   </div>
-                  <p className="text-md">
-                    {car?.description.substring(0, 100)}...
-                    <Link
-                      to={`/cars/${car._id}`}
-                      className="primary-color hover:underline"
-                    >
-                      see more
-                    </Link>
-                  </p>
 
-                  <div className="divider mb-0 mt-0"></div>
                   <div className="flex justify-between">
                     {" "}
                     <h4 className=" text-lg ">Price:</h4>{" "}
@@ -110,4 +99,4 @@ const FeaturedCars = () => {
   );
 };
 
-export default FeaturedCars;
+export default OfferedSection;

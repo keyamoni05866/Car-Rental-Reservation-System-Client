@@ -5,25 +5,22 @@ import icon3 from "../../../../assets/HomePagePhotos/icons/hours-24.png";
 import icon4 from "../../../../assets/HomePagePhotos/icons/message.png";
 const WhyChooseUs = () => {
   return (
-    <div>
-      <div className="lg:flex lg:justify-between lg:mx-0 mx-5 mb-20">
-        <div className="lg:w-[50%] ">
-          <img src={image} className=" lg:w-[600px]" alt="" />
-        </div>
+    <div className="mb-32">
+      <div className="lg:flex lg:flex-row-reverse lg:justify-between lg:mx-0 mx-5 mb-20">
         <div className="lg:w-[50%]">
-          <div className="bg-[#cfe4fa]   w-[180px] h-[50px]  rounded-xl">
+          <div className="bg-[#cfe4fa]   w-[180px] h-[50px] lg:mx-0 mx-auto  rounded-xl ">
             {" "}
             <h4 className="primary-color uppercase font-[540] lg:text-md text-[15px]  text-center  pt-3 ">
               Why Choose Us
             </h4>
           </div>
-          <h4 className="lg:text-[38px] mt-6  text-lg font-bold">
+
+          <h4 className="lg:text-[38px] mt-6 lg:text-left  text-center  text-lg font-bold">
             We offer the best experience
           </h4>
-          <h4 className="lg:text-[38px] mt-2  text-lg font-bold">
+          <h4 className="lg:text-[38px] lg:mt-2 lg:text-left  text-center  text-lg font-bold">
             with our rental deals
           </h4>
-
           <div className="flex gap-5 mt-12 items-center">
             <div className="bg-[#cfe4fa] p-1 rounded-xl size-12">
               {" "}
@@ -74,6 +71,9 @@ const WhyChooseUs = () => {
               </h5>
             </div>
           </div>
+        </div>
+        <div className="lg:w-[50%] ">
+          <img src={image} className=" lg:w-[600px]" alt="" />
         </div>
       </div>
     </div>
