@@ -6,6 +6,7 @@ import { useAppDispatch } from "../../../Redux/hook";
 import { toast } from "sonner";
 import { TResponse } from "../../../Types";
 import { signUser } from "../../../Redux/features/auth/authSlice";
+import { useState } from "react";
 
 type LoginFormData = {
   email: string;
@@ -16,6 +17,8 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    setValue,
+    reset,
     formState: { errors },
   } = useForm<LoginFormData>();
   const [loginUser] = useLoginUserMutation();
@@ -23,7 +26,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (data: LoginFormData) => {
-    // console.log(data);
+    console.log(data);
     const toastId = toast.loading("Sign In", { duration: 1000 });
     try {
       const res = (await loginUser(data).unwrap()) as TResponse<any>;
@@ -31,7 +34,7 @@ const Login = () => {
       const userInfo = res?.data?.user;
       const token = res?.data?.token;
       dispatch(signUser({ userInfo, token }));
-
+      reset();
       if (userInfo.role === "admin") {
         navigate(`/${userInfo.role}/dashboard`);
       } else {
@@ -44,6 +47,17 @@ const Login = () => {
       );
     }
   };
+
+  const handleAdminSetValue = async () => {
+    setValue("email", "keya05866@gmail.com");
+    setValue("password", "123456");
+    toast.success("Demo Admin Credentials autofilled", { duration: 2000 });
+  };
+  const handleUserSetValue = async () => {
+    setValue("email", "user1@gmail.com");
+    setValue("password", "123456");
+    toast.success("Demo User Credentials autofilled", { duration: 2000 });
+  };
   return (
     <div className=" mx-auto lg:max-w-screen-lg p-10 lg:p-0  ">
       <div className="lg:flex  lg:items-center lg:justify-between lg:gap-5 ">
@@ -51,13 +65,29 @@ const Login = () => {
         <div className="lg:w-[60%]">
           <img src={loginImage} alt="" className="w-full h-full" />
         </div>
+
         <div className="lg:w-[40%] mb-20">
           <form onSubmit={handleSubmit(handleLogin)}>
             <div className="grid grid-cols-1  gap-2   mb-2">
               <h4 className="primary-color text-3xl font-bold text-center uppercase">
                 Sign In
               </h4>
-
+              <div className="flex justify-end gap-2 mt-3 ">
+                <button
+                  type="button"
+                  onClick={handleUserSetValue}
+                  className="px-3 py-1 border border-gray-500 rounded-2xl text-md hover:bg-[#051c34] hover:text-white  "
+                >
+                  User Credentials
+                </button>
+                <button
+                  type="button"
+                  onClick={handleAdminSetValue}
+                  className="px-3 py-1 bg-[#155ba7] hover:bg-[#193e68] text-white border rounded-2xl text-md"
+                >
+                  Admin Credentials
+                </button>
+              </div>
               <div>
                 <label className="block text-sm font-medium leading-6 ">
                   Email :
