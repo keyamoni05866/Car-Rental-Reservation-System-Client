@@ -1,6 +1,8 @@
 import { useGetAllBookingsQuery } from "../../../Redux/api/BookingApi/bookingApi";
 import { useGetAvailableCarsForBookingQuery } from "../../../Redux/api/CarApi/carApi";
 import { useGetUsersQuery } from "../../../Redux/api/UserApi/UserApi";
+import Chart from "./Chart/Chart";
+import RevenueChart from "./Chart/RevenueChart";
 
 const AdminDashboard = () => {
   const { data: availableCars, isLoading } = useGetAvailableCarsForBookingQuery(
@@ -24,18 +26,25 @@ const AdminDashboard = () => {
       </div>
     );
   }
+
+  const analytics = {
+    cars: availableCar?.length,
+    bookings: totalBooking?.length,
+    users: allUser?.length,
+  };
+  const revenueAnalytics = {
+    revenue: totalRevenue,
+  };
   return (
     <div className="  mx-auto mt-5 ">
-      <div className="bg-[#cfe4fa]   w-[180px] h-[50px] mb-2 rounded-xl mx-auto ">
+      {/* <div className="bg-[#cfe4fa]   w-[180px] h-[50px] mb-2 rounded-xl   flex justify-center items-center ">
         {" "}
-        <h4 className="primary-color uppercase font-[540] lg:text-md text-[15px]  text-center  pt-3 ">
+        <h4 className="primary-color uppercase font-[540] lg:text-md text-[15px]  text-center  ">
           statistics
         </h4>
-      </div>
-      <h4 className="text-2xl font-bold text-center ">
-        Comprehensive Statistics & Performance Summary!!!
-      </h4>
-      <div className="lg:flex   gap-6   lg:justify-center rounded-2xl mt-5 ms-10 lg:ms-0 lg:mt-20">
+      </div> */}
+
+      <div className="lg:flex   gap-6  rounded-2xl mt-5 ms-10 lg:ms-0 lg:mt-5">
         <div className="stats shadow ">
           <div className="p-10 text-center">
             <div className="text-xl stat-title">Available Cars</div>
@@ -60,6 +69,11 @@ const AdminDashboard = () => {
             <div className="stat-value">${totalRevenue?.toFixed(2)}</div>
           </div>
         </div>
+      </div>
+      <div className="mt-9 lg:flex gap-10">
+        <Chart data={analytics} />
+
+        <RevenueChart data={revenueAnalytics} />
       </div>
     </div>
   );
