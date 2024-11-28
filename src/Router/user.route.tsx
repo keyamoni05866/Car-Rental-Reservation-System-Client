@@ -6,28 +6,46 @@ import PaymentMange from "../pages/Dashboard/User/PaymentManagement/PaymentMange
 import ProtectedRoute from "./ProtectedRoute";
 
 export const userPaths = [
+  // {
+  //   name: "Dashboard Overview",
+  //   children: [
+  //     {
+  //       name: "Profile",
+  //       path: "profile-management",
+  //       element: (
+  //         <ProtectedRoute requiredRole={["user"]}>
+  //           <UserProfile />
+  //         </ProtectedRoute>
+  //       ),
+  //     },
+  //     {
+  //       name: "Booking History",
+  //       path: "booking-history",
+  //       element: (
+  //         <ProtectedRoute requiredRole={["user"]}>
+  //           <BookingHistory />
+  //         </ProtectedRoute>
+  //       ),
+  //     },
+  //   ],
+  // },
   {
-    name: "Dashboard Overview",
-    children: [
-      {
-        name: "Profile",
-        path: "profile-management",
-        element: (
-          <ProtectedRoute requiredRole={["user"]}>
-            <UserProfile />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        name: "Booking History",
-        path: "booking-history",
-        element: (
-          <ProtectedRoute requiredRole={["user"]}>
-            <BookingHistory />
-          </ProtectedRoute>
-        ),
-      },
-    ],
+    name: "Profile",
+    path: "profile-management",
+    element: (
+      <ProtectedRoute requiredRole={["user"]}>
+        <UserProfile />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    name: "Booking History",
+    path: "booking-history",
+    element: (
+      <ProtectedRoute requiredRole={["user"]}>
+        <BookingHistory />
+      </ProtectedRoute>
+    ),
   },
   {
     name: "Booking Management",

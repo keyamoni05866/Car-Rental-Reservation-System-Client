@@ -1,19 +1,61 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useCarDetailsQuery } from "../../../Redux/api/CarApi/carApi";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  useCarDetailsQuery,
+  useGetAvailableCarsForBookingQuery,
+} from "../../../Redux/api/CarApi/carApi";
 import { Key, useState } from "react";
-import { TCar } from "../../../Types";
+import { TCar, TComment, TUser } from "../../../Types";
 import { useDispatch } from "react-redux";
 import { bookingCar } from "../../../Redux/features/booking/bookingSlice";
+import { Rating } from "@smastrom/react-rating";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useAppSelector } from "../../../Redux/hook";
+import { currentUser } from "../../../Redux/features/auth/authSlice";
+import {
+  useCreateCommentMutation,
+  useGetAllCommentsQuery,
+} from "../../../Redux/api/CommentApi/CommentApi";
+import { toast } from "sonner";
+import swal from "sweetalert";
+// import { Tabs } from "antd";
+import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
+import CommentCard from "./CommentCard";
+import SuggestedCar from "./SuggestedCar";
+// import "react-tabs/style/react-tabs.css";
+// import "react-tabs/style/react-tabs.css";
+type commentValue = {
+  comment: string;
+};
 
 const CarDetails = () => {
   const { id } = useParams();
+  const user = useAppSelector(currentUser) as unknown as TUser;
   const { data: cars, isLoading } = useCarDetailsQuery(id);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //   console.log(cars);
+
+  const [rating, setRating] = useState<number>(0);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<commentValue>();
+  const [createComment] = useCreateCommentMutation();
+  const { data: allCars } = useGetAvailableCarsForBookingQuery({});
+  const { data: allComments } = useGetAllCommentsQuery({});
+  // console.log(allComments);
+
   const carDetails: TCar = cars?.data;
 
+  const releventCars = allCars?.data?.filter(
+    (car) => car?.carType === carDetails?.carType
+  );
+  const getComments = allComments?.data?.filter(
+    (comment: TComment) => comment?.car?._id === carDetails?._id
+  );
+  // console.log(getComments);
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -48,10 +90,28 @@ const CarDetails = () => {
     navigate("/booking");
   };
 
+  const handleAddComment: SubmitHandler<commentValue> = async (data) => {
+    const commentData = {
+      car: carDetails?._id,
+      user: user._id,
+      rating: rating,
+      comment: data.comment,
+    };
+
+    try {
+      await createComment(commentData).unwrap();
+      swal("Feedback Done!", "Thanks for your valuable time!", "success");
+      reset();
+    } catch (err: any) {
+      toast.error(err);
+    }
+  };
+
   return (
     <div className=" lg:px-8 pb-20 px-9">
+      {/* Card Details */}
       <div className="w-full lg:flex lg:justify-between   lg:gap-x-12 lg:mt-16 ">
-        <div className="lg:w-[50%] h-[300px] lg:h-[600px] bg-[#dbd9d7] flex justify-center items-center  rounded-[4px]">
+        <div className="lg:w-[50%] h-[300px] lg:h-[600px]  bg-[#dbd9d7] flex justify-center items-center  rounded-[4px]">
           <img
             src={carDetails?.image}
             alt={carDetails?.name}
@@ -133,7 +193,7 @@ const CarDetails = () => {
           <div className="divider mb-0"></div>
 
           <p className="font-light  ">{carDetails?.description}</p>
-          <div className=" mt-5 flex justify-end ">
+          <div className=" mt-10 flex justify-end ">
             {carDetails?.status === "unavailable" ? (
               <>
                 {" "}
@@ -157,6 +217,118 @@ const CarDetails = () => {
             )}
           </div>
         </div>
+      </div>
+
+      <div className="divider"></div>
+
+      {/* comments modal and review text  */}
+      <div className="flex flex-row-reverse items-center justify-between">
+        <div>
+          <label htmlFor="my_modal" className="custom-btn ">
+            Write a Review
+          </label>
+        </div>
+        {getComments && getComments.length > 0 && (
+          <>
+            <div className="flex justify-start">
+              <h4 className="text-2xl font-bold">Review & Rating</h4>
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* comment card */}
+      <div className=" lg:max-w-5xl grid grid-cols-1 lg:gap-5 gap-y-10 lg:grid-cols-2 mx-auto mt-10 mb-20 ">
+        {getComments &&
+          getComments.length > 0 &&
+          getComments.map((comment: TComment) => (
+            <CommentCard key={comment?._id} comment={comment} />
+          ))}
+      </div>
+      {/* Feedback modal */}
+      <div>
+        {user && (
+          <>
+            <input type="checkbox" id="my_modal" className="modal-toggle" />
+            <div className="modal sm:modal-middle" role="dialog">
+              <div className="modal-box max-w-2xl">
+                {/* close button */}
+                <label
+                  className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                  htmlFor="my_modal"
+                >
+                  ✕
+                </label>
+
+                <form onSubmit={handleSubmit(handleAddComment)}>
+                  <div className="  gap-2   mb-2">
+                    <h4 className="primary-color text-2xl font-bold text-center uppercase">
+                      Feedback
+                    </h4>
+                    <div className="text-center">
+                      {" "}
+                      <p className="font-semibold">Share Your Experience</p>
+                      <Rating
+                        value={rating}
+                        onChange={setRating}
+                        style={{ maxWidth: 150 }}
+                        className="mx-auto"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium leading-6 text-gray-900 mt-2">
+                        Comment :
+                      </label>
+                      <div className="relative mt-2 rounded-md ">
+                        <textarea
+                          className="textarea textarea-bordered w-full"
+                          placeholder="Leave Your Comment"
+                          {...register("comment", {
+                            required: "Comment is required",
+                          })}
+                        ></textarea>
+                      </div>
+                      {errors.comment && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors?.comment.message}
+                        </p>
+                      )}
+                    </div>
+                    <div className=" flex">
+                      <button
+                        type="submit"
+                        className="w-full    mt-5    py-2   rounded-3xl font-medium primary-bg-color text-lg uppercase text-white hover:bg-[#051c34] "
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* suggested Car */}
+      <div className="bg-[#cfe4fa]   w-[180px] h-[50px] mx-auto rounded-xl">
+        {" "}
+        <h4 className="primary-color uppercase font-[540] lg:text-md text-[15px]  text-center  pt-3 ">
+          Suggested Cars
+        </h4>
+      </div>
+      <h4 className="lg:text-[38px] mt-6 text-center text-lg font-bold uppercase ">
+        You might also like!!
+      </h4>
+      <div className="grid grid-cols-4 ">
+        {releventCars && releventCars.length > 0 ? (
+          releventCars.map((car: TCar) => (
+            <SuggestedCar key={car?._id} car={car} />
+          ))
+        ) : (
+          <h2 className="text-center">No Car Found!!! </h2>
+        )}
       </div>
     </div>
   );

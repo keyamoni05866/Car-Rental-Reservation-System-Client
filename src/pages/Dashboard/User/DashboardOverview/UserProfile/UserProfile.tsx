@@ -93,7 +93,7 @@ const UserProfile = () => {
           </div>
         </div>
 
-        <div className="lg:w-[50%] w-full lg:h-[500px] h-full border mt-6 lg:mx-5 shadow-md rounded-3xl lg:p-10 p-5">
+        <div className="lg:w-[50%] w-full lg:h-[500px] h-full mt-6 lg:mx-5  rounded-3xl lg:p-10 p-5">
           <div className="text-lg divider font-bold mt-20 ">
             Update Your Profile
           </div>

@@ -54,7 +54,7 @@ const Login = () => {
     toast.success("Demo Admin Credentials autofilled", { duration: 2000 });
   };
   const handleUserSetValue = async () => {
-    setValue("email", "user1@gmail.com");
+    setValue("email", "toma@gmail.com");
     setValue("password", "123456");
     toast.success("Demo User Credentials autofilled", { duration: 2000 });
   };

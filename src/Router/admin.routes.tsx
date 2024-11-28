@@ -6,6 +6,7 @@ import ManageReturnCar from "../pages/Dashboard/Admin/ManageReturnCars/ManageRet
 import ManageUser from "../pages/Dashboard/Admin/UserManagement/ManageUser/ManageUser";
 import UpdateUser from "../pages/Dashboard/Admin/UserManagement/ManageUser/UpdateUser";
 import RoleManagement from "../pages/Dashboard/Admin/UserManagement/RoleManagement";
+import UserProfile from "../pages/Dashboard/User/DashboardOverview/UserProfile/UserProfile";
 import ProtectedRoute from "./ProtectedRoute";
 
 export const adminPaths = [
@@ -15,6 +16,15 @@ export const adminPaths = [
     element: (
       <ProtectedRoute requiredRole={["admin"]}>
         <AdminDashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    name: "My Profile",
+    path: "profile-management",
+    element: (
+      <ProtectedRoute requiredRole={["admin"]}>
+        <UserProfile />
       </ProtectedRoute>
     ),
   },
