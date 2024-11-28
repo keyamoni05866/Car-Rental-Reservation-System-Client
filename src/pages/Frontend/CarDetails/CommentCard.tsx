@@ -4,7 +4,7 @@ import { TComment } from "../../../Types";
 const CommentCard = ({ comment }: { comment: TComment }) => {
   return (
     <div>
-      <div className=" lg:w-[480px] lg:h-[230px]   shadow-md rounded-md border border-base-300 mx-auto p-4 lg:px-8 lg:py-5  hover:scale-105 duration-300">
+      <div className=" lg:w-[480px] lg:h-[230px]   shadow-md rounded-md border border-base-300 mx-auto p-4 lg:px-8 lg:py-2  hover:scale-105 duration-300">
         <Rating
           className="  "
           style={{ maxWidth: 150 }}

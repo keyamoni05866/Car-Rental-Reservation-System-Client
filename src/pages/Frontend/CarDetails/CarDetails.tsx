@@ -49,9 +49,6 @@ const CarDetails = () => {
 
   const carDetails: TCar = cars?.data;
 
-  const releventCars = allCars?.data?.filter(
-    (car) => car?.carType === carDetails?.carType
-  );
   const getComments = allComments?.data?.filter(
     (comment: TComment) => comment?.car?._id === carDetails?._id
   );
@@ -159,7 +156,7 @@ const CarDetails = () => {
               <ul className="list-decimal space-y-2 text-xl list-inside ms-3 ">
                 {carDetails?.features.map(
                   (feature: string, index: Key | null | undefined) => (
-                    <li key={index} className="text-gray-700">
+                    <li key={index} className="">
                       {feature}
                     </li>
                   )
@@ -321,11 +318,11 @@ const CarDetails = () => {
       <h4 className="lg:text-[38px] mt-6 text-center text-lg font-bold uppercase ">
         You might also like!!
       </h4>
-      <div className="grid grid-cols-4 ">
-        {releventCars && releventCars.length > 0 ? (
-          releventCars.map((car: TCar) => (
-            <SuggestedCar key={car?._id} car={car} />
-          ))
+      <div className="grid grid-cols-1   lg:grid-cols-4 my-16 mx-auto gap-5 ">
+        {allCars?.data && allCars?.data.length > 0 ? (
+          allCars?.data
+            .slice(5, 9)
+            .map((car: TCar) => <SuggestedCar key={car?._id} car={car} />)
         ) : (
           <h2 className="text-center">No Car Found!!! </h2>
         )}
