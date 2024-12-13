@@ -22,7 +22,9 @@
 .secondary-bg-color {
   background-color: #051c34;
 }
-
+/* .tab:focus {
+  outline: none;
+} */
 .custom-background {
   background: linear-gradient(120deg, #577492, #4a76a5);
 }

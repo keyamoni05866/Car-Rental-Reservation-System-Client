@@ -7,8 +7,8 @@ const SuggestedCar = ({ car }: { car: TCar }) => {
       <div className="bg-base-200 xl:w-[290px]  h-[280px] flex justify-center items-center rounded-xl p-4">
         <img
           src={car?.image}
-          alt="Product Picture"
-          className=" w-full h-full "
+          alt="Car Picture"
+          className=" w-full h-full  object-contain"
         />
       </div>
       <div className="ms-2">

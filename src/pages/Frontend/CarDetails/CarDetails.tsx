@@ -17,9 +17,10 @@ import {
 } from "../../../Redux/api/CommentApi/CommentApi";
 import { toast } from "sonner";
 import swal from "sweetalert";
+import "@smastrom/react-rating/style.css";
 
-import CommentCard from "./CommentCard";
 import SuggestedCar from "./SuggestedCar";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 type commentValue = {
   comment: string;
@@ -42,22 +43,25 @@ const CarDetails = () => {
   } = useForm<commentValue>();
   const [createComment] = useCreateCommentMutation();
   const { data: allCars } = useGetAvailableCarsForBookingQuery({});
-  const { data: allComments } = useGetAllCommentsQuery({});
-  // console.log(allComments);
-
-  const carDetails: TCar = cars?.data;
-
-  const getComments = allComments?.data?.filter(
-    (comment: TComment) => comment?.car?._id === carDetails?._id
-  );
-  // console.log(getComments);
-  if (isLoading) {
+  const { data: allComments, isLoading: commentLoading } =
+    useGetAllCommentsQuery({});
+  if (isLoading || commentLoading) {
     return (
       <div className="flex justify-center items-center h-64">
         <span className="loading loading-spinner loading-lg"></span>
       </div>
     );
   }
+  // console.log(allComments);
+
+  const carDetails: TCar = cars?.data;
+
+  // console.log(getComments);
+
+  const getComments = allComments?.data?.filter(
+    (comment: TComment) => comment?.car?._id === carDetails?._id
+  );
+  console.log(getComments);
 
   const handleAddFeatures = (additionalFeature: string) => {
     let getAddedFeatures: string[];
@@ -214,32 +218,81 @@ const CarDetails = () => {
         </div>
       </div>
 
-      <div className="divider"></div>
+      <Tabs className=" mx-auto py-8">
+        <TabList className="flex justify-center gap-5 text-2xl border-b-2 mb-6">
+          <Tab
+            className="px-6 py-2 cursor-pointer transition duration-300 text-gray-600 focus:outline-none"
+            selectedClassName="border-b-4 border-[#1572d3] text-[#1572d3]"
+          >
+            {" "}
+            Description
+          </Tab>
+          <Tab
+            className="px-6 py-2 cursor-pointer transition duration-300 text-gray-600 focus:outline-none"
+            selectedClassName=" border-b-4 border-[#1572d3] text-[#1572d3]"
+          >
+            Reviews
+          </Tab>
+        </TabList>
 
-      {/* comments modal and review text  */}
-      <div className="flex flex-row-reverse items-center justify-between">
-        <div>
-          <label htmlFor="my_modal" className="custom-btn ">
-            Write a Review
-          </label>
-        </div>
-        {getComments && getComments.length > 0 && (
-          <>
-            <div className="flex justify-start">
-              <h4 className="text-2xl font-bold">Review & Rating</h4>
+        <TabPanel>
+          <h2>Any content 1</h2>
+        </TabPanel>
+        <TabPanel>
+          <div className="flex justify-between mb-3 mt-4">
+            <div>
+              <h5 className=" ms-4 flex justify-center text-xl items-center gap-2">
+                <span className=" font-semibold">All Reviews</span> (
+                {getComments?.length})
+              </h5>
             </div>
-          </>
-        )}
-      </div>
+            <label htmlFor="my_modal" className="custom-btn ">
+              Write a Review
+            </label>
+          </div>
+          <div className="  grid grid-cols-1 lg:gap-5 gap-y-10 lg:grid-cols-2 xl:grid-cols-3   ">
+            {getComments && getComments?.length > 0 ? (
+              getComments?.map((comment: TComment) => (
+                <div
+                  key={comment?._id}
+                  className=" w-full h-full lg:w-[400px] lg:h-[230px]   shadow-md rounded-md border border-base-300 mx-auto p-4 lg:px-8 lg:py-2  hover:scale-90 duration-300"
+                >
+                  <div>
+                    <Rating
+                      className="mt-3"
+                      style={{ maxWidth: 100 }}
+                      value={comment?.rating || 0}
+                      readOnly
+                    />
+                  </div>
 
-      {/* comment card */}
-      <div className=" lg:max-w-5xl grid grid-cols-1 lg:gap-5 gap-y-10 lg:grid-cols-2 mx-auto mt-10 mb-20 ">
-        {getComments &&
-          getComments.length > 0 &&
-          getComments.map((comment: TComment) => (
-            <CommentCard key={comment?._id} comment={comment} />
-          ))}
-      </div>
+                  <h3 className="  mt-3 font-semibold text-2xl mb-2  ">
+                    {comment?.user?.name}
+                  </h3>
+
+                  <p className="text-md text-gray-500   ">
+                    “{comment?.comment}”
+                  </p>
+                  <h4 className="text-sm text-gray-500  mt-3">
+                    {new Date(comment?.createdAt!).toLocaleTimeString("en-US", {
+                      hour12: true,
+                      timeZone: "Asia/Dhaka",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </h4>
+                </div>
+              ))
+            ) : (
+              <h4>No Comments found</h4>
+            )}
+          </div>
+        </TabPanel>
+      </Tabs>
+
       {/* Feedback modal */}
       <div>
         {user && (
@@ -307,7 +360,7 @@ const CarDetails = () => {
       </div>
 
       {/* suggested Car */}
-      <div className="bg-[#cfe4fa]   w-[180px] h-[50px] mx-auto rounded-xl">
+      <div className="bg-[#cfe4fa]   w-[180px] h-[50px] mx-auto rounded-xl mt-16">
         {" "}
         <h4 className="primary-color uppercase font-[540] lg:text-md text-[15px]  text-center  pt-3 ">
           Suggested Cars
