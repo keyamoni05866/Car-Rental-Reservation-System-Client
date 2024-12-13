@@ -81,15 +81,18 @@ const Navbar = () => {
               )}
             </ul>
           </div>
-          <div className=" flex items-center ">
-            <img
-              src={logo}
-              alt=""
-              className="lg:size-10 size-5    rounded-xl"
-            />
-            <h5 className="lg:text-xl text-sm  ms-1  font-semibold  primary-color ">
-              CityCar Rental
-            </h5>
+          <div>
+            <Link to="/" className=" flex items-center ">
+              {" "}
+              <img
+                src={logo}
+                alt=""
+                className="lg:size-10 size-5    rounded-xl"
+              />
+              <h5 className="lg:text-xl text-sm  ms-1  font-semibold  primary-color ">
+                CityCar Rental
+              </h5>
+            </Link>
           </div>
         </div>
 
@@ -112,20 +115,6 @@ const Navbar = () => {
             <li>
               <Link to="/booking">Booking</Link>
             </li>
-
-            {/* {userInfo ? (
-              <li>
-                {userInfo.role === "admin" ? (
-                  <Link to={`/${userInfo?.role}/dashboard`}>Dashboard</Link>
-                ) : (
-                  <Link to={`/${userInfo?.role}/profile-management`}>
-                    Dashboard
-                  </Link>
-                )}
-              </li>
-            ) : (
-              <></>
-            )} */}
           </ul>
         </div>
         <div className="navbar-end ">

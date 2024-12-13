@@ -29,47 +29,43 @@ const OfferedSection = () => {
           cars?.data?.slice(0, 4).map((car: TCar) => (
             <div
               key={car._id}
-              className="card card-compact bg-base-100 lg:max-w-[240px] xl:max-w-[340px] shadow-md  mx-auto hover:scale-95 duration-300 rounded-xl "
+              className="card card-compact border-[2px] max-w-[350px] rounded-lg overflow-hidden shadow-sm   border-gray-300 transition-all duration-300 hover:shadow-xl hover:border-[#1572d3] mx-auto"
             >
-              <div className=" lg:w-[240px] xl:w-[300px]  h-[100px] flex justify-center items-center">
+              <div className="w-full h-[220px] bg-base-200  overflow-hidden relative group">
                 <img
-                  src={car.image}
-                  alt="Product Picture"
-                  className=" w-full h-full "
+                  src={car?.image}
+                  alt={car?.name}
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
-              <div className=" my-2  ">
-                <div className="mx-7">
-                  <h3 className="card-title">{car?.name}</h3>
-                  <div className="flex justify-between mb-2 xl:text-lg lg:text-[12px]">
-                    {" "}
-                    <h4 className=" ">
-                      <span className="font-semibold ">Car Type:</span>{" "}
-                      {car?.carType}
-                    </h4>
-                    <h4 className="">
-                      <span className="font-semibold "> Color:</span>{" "}
-                      {car?.color}
-                    </h4>
-                  </div>
 
-                  <div className="flex justify-between">
-                    {" "}
-                    <h4 className=" text-lg ">Price:</h4>{" "}
-                    <div className="flex">
-                      <h4 className="font-semibold text-lg ">
-                        {" "}
-                        ${car?.pricePerHour}
-                      </h4>
-                      <h4 className="text-lg ms-1">/hour</h4>
-                    </div>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold  truncate">{car?.name}</h3>
+
+                <p className="text-sm   mt-1 line-clamp-2">
+                  {car?.description.substring(0, 80)}...
+                  <Link
+                    to={`/cars/${car._id}`}
+                    className="text-blue-600 hover:underline ml-1"
+                  >
+                    see more
+                  </Link>
+                </p>
+
+                <div className="my-2 border-t border-gray-200"></div>
+
+                <div className="flex justify-between items-center">
+                  <span className="text-sm  font-medium">Price:</span>
+                  <div className="text-lg font-bold  flex items-center">
+                    ${car?.pricePerHour}
+                    <span className="text-sm font-normal ml-1">/hour</span>
                   </div>
                 </div>
 
-                <div className="card-actions w-full mt-4 mb-4 items-center justify-center">
+                <div className="mt-4">
                   <Link
                     to={`/cars/${car._id}`}
-                    className="custom-btn flex w-full mx-5  items-center justify-center"
+                    className="w-full block py-2 px-4 bg-[#1572d3] text-white text-center rounded-lg font-medium transition-transform duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#1572d3] focus:ring-offset-2"
                   >
                     View Details
                     <svg
@@ -78,7 +74,7 @@ const OfferedSection = () => {
                       viewBox="0 0 24 24"
                       strokeWidth={1.8}
                       stroke="currentColor"
-                      className="size-[20px] ms-[8px] mt-[2px]"
+                      className="w-5 h-5 inline-block ml-2"
                     >
                       <path
                         strokeLinecap="round"

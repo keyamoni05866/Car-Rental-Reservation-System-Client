@@ -56,7 +56,7 @@ const Testimonial = () => {
         modules={[Pagination]}
         className="mySwiper  mt-16     "
       >
-        {allComments?.data?.map((comment: TComment) => (
+        {allComments?.data?.slice(0, 8).map((comment: TComment) => (
           <>
             <SwiperSlide className=" mb-14  ">
               <div className=" w-[300px] h-[220px]  shadow-lg rounded-md  border-base-300 mx-auto p-4  hover:scale-110 duration-300">

@@ -16,12 +16,12 @@ const ProcessSection = () => {
         Follow These Simple Steps to Hit the Road.
       </h4>
 
-      <div className=" mt-10 lg:mt-20 ">
+      <div className=" mt-10 ">
         <div className="lg:flex lg:justify-around   pt-10 px-5 ">
-          <div className="shadow-lg lg:w-[230px]  xl:w-[300px] p-5 text-justify rounded-lg    lg:mb-0 mb-5 hover:scale-90 duration-300">
-            <div className="bg-[#cfe4fa] p-1 rounded-xl size-24 mx-auto flex justify-center items-center">
+          <div className="shadow-lg lg:w-[230px]  xl:w-[300px] p-5 text-justify rounded-lg     lg:mb-0 mb-5 hover:scale-90 duration-300 ">
+            <div className="bg-[#cfe4fa] p-1 rounded-xl size-20 mx-auto flex justify-center items-center">
               {" "}
-              <img src={location} className="size-16 " alt="" />
+              <img src={location} className="size-14 " alt="" />
             </div>
             <div className="mt-4">
               <h4 className="text-[22px] font-semibold text-center">
@@ -33,9 +33,9 @@ const ProcessSection = () => {
             </div>
           </div>
           <div className="shadow-lg lg:w-[230px]  xl:w-[300px]  p-5 text-justify rounded-lg   lg:mb-0 mb-5 hover:scale-90 duration-300">
-            <div className="bg-[#cfe4fa] p-1 rounded-xl size-24 mx-auto flex justify-center items-center">
+            <div className="bg-[#cfe4fa] p-1 rounded-xl size-20 mx-auto flex justify-center items-center">
               {" "}
-              <img src={calendar} className="size-16 " alt="" />
+              <img src={calendar} className="size-14 " alt="" />
             </div>
 
             <div className="mt-4">
@@ -48,9 +48,9 @@ const ProcessSection = () => {
             </div>
           </div>
           <div className="shadow-lg lg:w-[230px]  xl:w-[300px] p-5 text-justify rounded-lg    lg:mb-0 mb-5 hover:scale-90 duration-300">
-            <div className="bg-[#cfe4fa] p-1 rounded-xl size-24 mx-auto flex justify-center items-center">
+            <div className="bg-[#cfe4fa] p-1 rounded-xl size-20 mx-auto flex justify-center items-center">
               {" "}
-              <img src={checkout} className="size-16 " alt="" />
+              <img src={checkout} className="size-14 " alt="" />
             </div>
 
             <div className="mt-4">
@@ -64,9 +64,9 @@ const ProcessSection = () => {
             </div>
           </div>
           <div className="shadow-lg lg:w-[230px]   xl:w-[300px]  p-5 text-justify rounded-lg    lg:mb-0 mb-5 hover:scale-90 duration-300">
-            <div className="bg-[#cfe4fa] p-1 rounded-xl size-24 mx-auto flex justify-center items-center">
+            <div className="bg-[#cfe4fa] p-1 rounded-xl size-20 mx-auto flex justify-center items-center">
               {" "}
-              <img src={car} className="size-16 " alt="" />
+              <img src={car} className="size-14 " alt="" />
             </div>
 
             <div className="mt-4">

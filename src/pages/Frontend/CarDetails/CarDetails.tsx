@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   useCarDetailsQuery,
   useGetAvailableCarsForBookingQuery,
@@ -17,12 +17,10 @@ import {
 } from "../../../Redux/api/CommentApi/CommentApi";
 import { toast } from "sonner";
 import swal from "sweetalert";
-// import { Tabs } from "antd";
-import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
+
 import CommentCard from "./CommentCard";
 import SuggestedCar from "./SuggestedCar";
-// import "react-tabs/style/react-tabs.css";
-// import "react-tabs/style/react-tabs.css";
+
 type commentValue = {
   comment: string;
 };

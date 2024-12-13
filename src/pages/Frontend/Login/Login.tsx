@@ -6,7 +6,6 @@ import { useAppDispatch } from "../../../Redux/hook";
 import { toast } from "sonner";
 import { TResponse } from "../../../Types";
 import { signUser } from "../../../Redux/features/auth/authSlice";
-import { useState } from "react";
 
 type LoginFormData = {
   email: string;
