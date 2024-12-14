@@ -14,13 +14,13 @@ const SuggestedCar = ({ car }: { car: TCar }) => {
       <div className="ms-2">
         <h4 className="text-xl font-bold mt-5 ">{car?.name}</h4>
         <div className="xl:flex justify-between">
-          <h4 className="lg:text-md text-lg font-bold text-black">
+          <h4 className="lg:text-md text-lg font-bold ">
             Car Type:
             <span className="lg:text-sm text-lg  text-gray-500 ms-2">
               {car?.carType}
             </span>
           </h4>
-          <h4 className="lg:text-md text-lg  font-bold text-black">
+          <h4 className="lg:text-md text-lg  font-bold ">
             Color:
             <span className="lg:text-sm text-lg  text-gray-500 ms-2">
               {car?.color}

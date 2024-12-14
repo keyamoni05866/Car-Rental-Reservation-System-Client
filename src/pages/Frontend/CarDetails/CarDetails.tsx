@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   useCarDetailsQuery,
   useGetAvailableCarsForBookingQuery,
@@ -21,6 +21,8 @@ import "@smastrom/react-rating/style.css";
 
 import SuggestedCar from "./SuggestedCar";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import CarDetailsTabPanel from "./CarDetailsTabPanel";
+import CommentCard from "./CommentCard";
 
 type commentValue = {
   comment: string;
@@ -58,10 +60,24 @@ const CarDetails = () => {
 
   // console.log(getComments);
 
+  const getRelatedCar = allCars?.data?.filter(
+    (car: TCar) => car?.color === carDetails?.color
+  );
+  // console.log(getRelatedCar);
+
   const getComments = allComments?.data?.filter(
     (comment: TComment) => comment?.car?._id === carDetails?._id
   );
-  console.log(getComments);
+
+  const totalRatings =
+    getComments?.reduce(
+      (sum: any, comment: TComment) => sum + (comment.rating || 0),
+      0
+    ) || 0;
+  const averageRating = getComments?.length
+    ? (totalRatings / getComments.length).toFixed(1)
+    : "0";
+  // console.log(Number(averageRating));
 
   const handleAddFeatures = (additionalFeature: string) => {
     let getAddedFeatures: string[];
@@ -110,48 +126,41 @@ const CarDetails = () => {
     <div className=" lg:px-8 pb-20 px-9">
       {/* Card Details */}
       <div className="w-full lg:flex lg:justify-between   lg:gap-x-12 lg:mt-16 ">
-        <div className="lg:w-[50%] h-[300px] lg:h-[600px]  bg-[#dbd9d7] flex justify-center items-center  rounded-[4px]">
+        <div className="lg:w-[50%] h-[300px] lg:h-[430px]  bg-[#dbd9d7] flex justify-center items-center  rounded-[4px]">
           <img
             src={carDetails?.image}
             alt={carDetails?.name}
-            className="w-full h-full"
+            className="w-full h-full object-cover"
           />
         </div>
         <div key={carDetails?._id} className="lg:w-[50%] lg:mt-0 mt-10">
-          <div className="flex gap-2 items-center lg:text-xl">
-            <span className="font-semibold">Model:</span>
-            <p className=" font-light">{carDetails?.model}</p>
-          </div>
-          <div className="flex gap-2 items-center lg:text-xl">
-            <span className="font-semibold">Car Type:</span>
-            <p className=" font-light">{carDetails?.carType}</p>
-          </div>
-          <div className="flex gap-2 items-center lg:text-xl">
-            <span className="font-semibold">Availability:</span>
-            <p className="font-light  uppercase">{carDetails?.status}</p>
-          </div>
-
-          <h4 className=" font-bold mt-5 mb-3  lg:text-[45px] text-lg uppercase">
+          <h4 className=" font-bold mt-5   lg:text-[45px] text-lg uppercase">
             {carDetails?.name}
           </h4>
-          <div className="flex gap-10 mb-2">
-            <div className="flex gap-2 items-center lg:text-xl">
-              <span className="font-semibold">Color:</span>
-              <p className=" font-light">{carDetails?.color}</p>
-            </div>
-            <div className="flex gap-2 items-center lg:text-xl">
-              <span className="font-semibold">Year:</span>
-              <p className=" font-light">{carDetails?.year}</p>
-            </div>
+          <div className="mb-3 flex gap-3  items-center my-3  ">
+            {" "}
+            <Rating
+              style={{ maxWidth: 150 }}
+              value={Number(averageRating)}
+              readOnly
+            />
+            <span className="text-2xl  ">
+              {Number(averageRating)} <span>/5</span>
+            </span>
           </div>
-          <div className="flex gap-2 items-center lg:text-xl mb-2 ms-1">
-            <span className="font-semibold uppercase">Is-Electric:</span>
-            <p className=" font-light">{carDetails?.isElectric}</p>
+
+          <div className="flex text-3xl ">
+            <h4 className="font-semibold  "> ${carDetails?.pricePerHour}</h4>
+            <h4 className=" ms-1">/hour</h4>
           </div>
+          <p className="text-[16px]   mt-1 line-clamp-2">
+            {carDetails?.description.substring(0, 150)}.
+          </p>
+
           <div className="divider mt-0"></div>
-          <div className="flex w-full gap-10 ">
-            <div className="flex-grow place-items-center">
-              <h4 className="  ms-2 font-bold text-xl lg:text-2xl mb-2">
+          <div className="flex w-full  ">
+            <div className="flex-grow ">
+              <h4 className="  font-bold text-xl lg:text-2xl mb-2 ms-3">
                 Features
               </h4>
 
@@ -189,10 +198,8 @@ const CarDetails = () => {
               ))}
             </div>
           </div>
-          <div className="divider mb-0"></div>
 
-          <p className="font-light  ">{carDetails?.description}</p>
-          <div className=" mt-10 flex justify-end ">
+          <div className=" mt-8 flex justify-end ">
             {carDetails?.status === "unavailable" ? (
               <>
                 {" "}
@@ -218,6 +225,7 @@ const CarDetails = () => {
         </div>
       </div>
 
+      {/* Tabs Section */}
       <Tabs className=" mx-auto py-8">
         <TabList className="flex justify-center gap-5 text-2xl border-b-2 mb-6">
           <Tab
@@ -225,7 +233,7 @@ const CarDetails = () => {
             selectedClassName="border-b-4 border-[#1572d3] text-[#1572d3]"
           >
             {" "}
-            Description
+            Details
           </Tab>
           <Tab
             className="px-6 py-2 cursor-pointer transition duration-300 text-gray-600 focus:outline-none"
@@ -235,9 +243,84 @@ const CarDetails = () => {
           </Tab>
         </TabList>
 
+        {/* Car More details tab panel */}
         <TabPanel>
-          <h2>Any content 1</h2>
+          <div className="lg:flex lg:justify-between mt-8">
+            <CarDetailsTabPanel car={carDetails} />
+            <div className="grid grid-cols-1 gap-y-4      ms-8">
+              {getRelatedCar && getRelatedCar?.length > 0 ? (
+                getRelatedCar?.slice(0, 2).map((car: TCar) => (
+                  <div
+                    key={car._id}
+                    className="card card-compact border-[2px] max-w-[350px] rounded-lg overflow-hidden shadow-sm   border-gray-300 transition-all duration-300 hover:shadow-xl hover:border-[#1572d3] mx-auto "
+                  >
+                    <div className="w-full  h-[200px]  overflow-hidden relative group ">
+                      <img
+                        src={car?.image}
+                        alt={car?.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </div>
+
+                    <div className="p-4">
+                      <h3 className="text-lg font-semibold  truncate">
+                        {car?.name}
+                      </h3>
+
+                      <p className="text-sm   mt-1 line-clamp-2">
+                        {car?.description.substring(0, 80)}...
+                        <Link
+                          to={`/cars/${car._id}`}
+                          className="text-blue-600 hover:underline ml-1"
+                        >
+                          see more
+                        </Link>
+                      </p>
+
+                      <div className="my-2 border-t border-gray-200"></div>
+
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm  font-medium">Price:</span>
+                        <div className="text-lg font-bold  flex items-center">
+                          ${car?.pricePerHour}
+                          <span className="text-sm font-normal ml-1">
+                            /hour
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="mt-4">
+                        <Link
+                          to={`/cars/${car._id}`}
+                          className="w-full block py-2 px-4 bg-[#1572d3] text-white text-center rounded-lg font-medium transition-transform duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#1572d3] focus:ring-offset-2"
+                        >
+                          View Details
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.8}
+                            stroke="currentColor"
+                            className="w-5 h-5 inline-block ml-2"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                            />
+                          </svg>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <h2 className="text-center">No Related Car Found!!! </h2>
+              )}
+            </div>
+          </div>
         </TabPanel>
+        {/* Review Tab Panel */}
         <TabPanel>
           <div className="flex justify-between mb-3 mt-4">
             <div>
@@ -246,45 +329,16 @@ const CarDetails = () => {
                 {getComments?.length})
               </h5>
             </div>
-            <label htmlFor="my_modal" className="custom-btn ">
-              Write a Review
-            </label>
+            {user && (
+              <label htmlFor="my_modal" className="custom-btn ">
+                Write a Review
+              </label>
+            )}
           </div>
           <div className="  grid grid-cols-1 lg:gap-5 gap-y-10 lg:grid-cols-2 xl:grid-cols-3   ">
             {getComments && getComments?.length > 0 ? (
               getComments?.map((comment: TComment) => (
-                <div
-                  key={comment?._id}
-                  className=" w-full h-full lg:w-[400px] lg:h-[230px]   shadow-md rounded-md border border-base-300 mx-auto p-4 lg:px-8 lg:py-2  hover:scale-90 duration-300"
-                >
-                  <div>
-                    <Rating
-                      className="mt-3"
-                      style={{ maxWidth: 100 }}
-                      value={comment?.rating || 0}
-                      readOnly
-                    />
-                  </div>
-
-                  <h3 className="  mt-3 font-semibold text-2xl mb-2  ">
-                    {comment?.user?.name}
-                  </h3>
-
-                  <p className="text-md text-gray-500   ">
-                    “{comment?.comment}”
-                  </p>
-                  <h4 className="text-sm text-gray-500  mt-3">
-                    {new Date(comment?.createdAt!).toLocaleTimeString("en-US", {
-                      hour12: true,
-                      timeZone: "Asia/Dhaka",
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </h4>
-                </div>
+                <CommentCard key={comment?._id} comment={comment} />
               ))
             ) : (
               <h4>No Comments found</h4>
@@ -360,7 +414,7 @@ const CarDetails = () => {
       </div>
 
       {/* suggested Car */}
-      <div className="bg-[#cfe4fa]   w-[180px] h-[50px] mx-auto rounded-xl mt-16">
+      <div className="bg-[#cfe4fa]   w-[180px] h-[50px] mx-auto rounded-xl mt-10">
         {" "}
         <h4 className="primary-color uppercase font-[540] lg:text-md text-[15px]  text-center  pt-3 ">
           Suggested Cars

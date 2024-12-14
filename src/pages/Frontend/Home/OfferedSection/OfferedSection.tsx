@@ -43,7 +43,7 @@ const OfferedSection = () => {
                 <h3 className="text-lg font-semibold  truncate">{car?.name}</h3>
 
                 <p className="text-sm   mt-1 line-clamp-2">
-                  {car?.description.substring(0, 80)}...
+                  {car?.description.substring(0, 70)}...
                   <Link
                     to={`/cars/${car._id}`}
                     className="text-blue-600 hover:underline ml-1"
