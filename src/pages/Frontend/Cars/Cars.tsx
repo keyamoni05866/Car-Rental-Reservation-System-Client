@@ -2,19 +2,25 @@ import { Link } from "react-router-dom";
 import { useGetCarsQuery } from "../../../Redux/api/CarApi/carApi";
 import { TCar } from "../../../Types";
 import { useState } from "react";
+import PaginationComponent from "../../../Component/PaginationComponent";
 
 const Cars = () => {
   const [carType, setCartype] = useState("All");
   const [color, setColor] = useState("All");
   const [features, setFeatures] = useState("All");
   const [priceRange, setPriceRange] = useState<number | "">("");
+
   const [sortByPrice, setSortByPrice] = useState<"asc" | "desc">("asc");
-  const { data: cars, isLoading } = useGetCarsQuery({
+  const [page, setPage] = useState(1);
+
+  const { data, isLoading } = useGetCarsQuery({
     carType,
     color,
     priceRange,
     features,
     sortByPrice,
+    page,
+    limit: 6,
   });
 
   if (isLoading) {
@@ -24,6 +30,11 @@ const Cars = () => {
       </div>
     );
   }
+  const {
+    result: cars = [],
+    totalPages = 0,
+    currentPage = 1,
+  } = data?.data || {};
 
   const handleForClear = () => {
     setCartype("All");
@@ -36,7 +47,7 @@ const Cars = () => {
   return (
     <div className=" min-h-screen mb-20 mt-10 px-3 ">
       <div className="lg:flex justify-between w-full gap-5 ">
-        <div className=" lg:px-0 px-3 ">
+        <div className=" lg:px-0 px-3  ">
           <div className="flex  justify-between mb-5 mt-5">
             <h4>Filter</h4>
             <svg
@@ -147,8 +158,8 @@ const Cars = () => {
             </select>
           </div>
           <div className="lg:mt-3  mt-10 card-grid mx-auto   gap-4 ">
-            {cars?.data && cars?.data?.length > 0 ? (
-              cars?.data?.map((car: TCar) => (
+            {cars && cars.length > 0 ? (
+              cars?.map((car: TCar) => (
                 <div
                   key={car._id}
                   className="card card-compact border-[2px] max-w-[350px] rounded-lg overflow-hidden shadow-sm   border-gray-300 transition-all duration-300 hover:shadow-xl hover:border-[#1572d3] mx-auto"
@@ -215,6 +226,28 @@ const Cars = () => {
               <h2 className="text-center">No Car Found!!! </h2>
             )}
           </div>
+          <PaginationComponent
+            setPage={setPage}
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
+          {/* <div style={{ marginTop: "20px" }}>
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+            >
+              Previous
+            </button>
+            <span style={{ margin: "0 10px" }}>
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+            >
+              Next
+            </button>
+          </div> */}
         </div>
       </div>
     </div>

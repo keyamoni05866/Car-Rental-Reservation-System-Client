@@ -10,11 +10,6 @@ const carApi = baseApi.injectEndpoints({
         params,
       }),
       providesTags: ["cars"],
-      transformResponse: (response: TResponseRedux<TCar[]>) => {
-        return {
-          data: response.data,
-        };
-      },
     }),
     getAvailableCarsForBooking: builder.query({
       query: (params) => ({
