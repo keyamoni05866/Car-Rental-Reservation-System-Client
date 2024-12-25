@@ -15,7 +15,9 @@
 .primary-bg-color {
   background-color: #1572d3;
 }
-
+.navbar .menu li a.active {
+  color: inherit !important;
+}
 .secondary-color {
   color: #051c34;
 }

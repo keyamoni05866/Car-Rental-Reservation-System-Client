@@ -1,6 +1,6 @@
 const Contact = () => {
   return (
-    <div className="lg:mx-[120px] lg:pb-40 px-4 lg:px-0 ">
+    <div className="lg:mx-[120px] lg:pb-40 px-4 lg:px-0 mt-24 ">
       <h4 className="primary-color lg:text-4xl text-2xl font-bold text-center mt-5">
         Contact Us
       </h4>

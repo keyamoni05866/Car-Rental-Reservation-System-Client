@@ -1,8 +1,11 @@
 import { Button, Layout, theme } from "antd";
 import DashboardSidebar from "./DashboardSidebar";
-import { Outlet } from "react-router-dom";
-import { useAppDispatch } from "../Redux/hook";
-import { logOutUser } from "../Redux/features/auth/authSlice";
+import { Link, Outlet } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../Redux/hook";
+import { currentUser, logOutUser } from "../Redux/features/auth/authSlice";
+import { useState } from "react";
+import { TUser } from "../Types";
+import profile from "../assets/profilePicture/profile.jpg";
 
 const { Header, Content } = Layout;
 
@@ -11,6 +14,10 @@ const DashboardLayout = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   const dispatch = useAppDispatch();
+  const [isOpen, setIsOpen] = useState(false);
+  const user = useAppSelector(currentUser) as unknown as TUser;
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
   const handleLogOut = () => {
     dispatch(logOutUser());
   };

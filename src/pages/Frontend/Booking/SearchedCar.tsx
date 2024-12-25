@@ -17,7 +17,7 @@ const SearchedCar = ({ car }: { car: TCar }) => {
   };
 
   return (
-    <div className="card card-compact bg-base-100 max-w-[360px] h-[450px] shadow-md rounded-[3px] mx-auto">
+    <div className="card card-compact bg-base-100 max-w-[360px] h-[450px] shadow-md rounded-[3px] mx-auto ">
       <div className="bg-base-200 w-[360px]  h-[200px]  flex justify-center items-center">
         <img
           src={car.image}

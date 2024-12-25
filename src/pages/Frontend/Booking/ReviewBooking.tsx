@@ -47,7 +47,7 @@ const ReviewBooking = () => {
       {selectedCar.length !== 0 ? (
         <>
           {" "}
-          <div className="bg-[#cfe4fa]   w-[180px] h-[50px] mb-2 rounded-xl mx-auto mt-5">
+          <div className="bg-[#cfe4fa]   w-[180px] h-[50px] mb-2 rounded-xl mx-auto mt-28">
             {" "}
             <h4 className="primary-color uppercase font-[540] lg:text-md text-[15px]  text-center  pt-3 ">
               Booking Review

@@ -123,7 +123,7 @@ const CarDetails = () => {
   };
 
   return (
-    <div className=" lg:px-8 pb-20 px-9">
+    <div className=" lg:px-8 pb-20 px-9 mt-28">
       {/* Card Details */}
       <div className="w-full lg:flex lg:justify-between   lg:gap-x-12 lg:mt-16 ">
         <div className="lg:w-[50%] h-[300px] lg:h-[430px]  bg-[#dbd9d7] flex justify-center items-center  rounded-[4px]">

@@ -3,9 +3,9 @@ import image from "../../../../assets/HomePagePhotos/blue3.png";
 
 const HeroSection = () => {
   return (
-    <div className="mb-32 mx-3 lg:mx-0">
+    <div className="mb-24 mx-3 lg:mx-0 mt-10">
       <div className=" lg:flex justify-between  gap-6">
-        <div className="lg:w-[50%] lg:mt-[110px] lg:ms-6 mt-20 ">
+        <div className="lg:w-[50%] lg:mt-[110px]  mt-20 ms-3">
           <h4 className="lg:text-[45px] text-3xl font-bold ">
             Rent the Best Cars
           </h4>

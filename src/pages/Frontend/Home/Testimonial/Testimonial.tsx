@@ -10,7 +10,6 @@ import { TComment } from "../../../../Types";
 
 const Testimonial = () => {
   const { data: allComments, isLoading } = useGetAllCommentsQuery({});
-  console.log(allComments);
 
   if (isLoading) {
     return (
@@ -57,28 +56,26 @@ const Testimonial = () => {
         className="mySwiper  mt-16     "
       >
         {allComments?.data?.slice(0, 8).map((comment: TComment) => (
-          <>
-            <SwiperSlide className=" mb-14  ">
-              <div className=" w-[300px] h-[220px]  shadow-lg rounded-md  border-base-300 mx-auto p-4  hover:scale-110 duration-300">
-                {/* <img
+          <SwiperSlide className=" mb-14  " key={comment?._id}>
+            <div className=" w-[300px] h-[220px]  shadow-lg rounded-md  border-base-300 mx-auto p-4  hover:scale-110 duration-300">
+              {/* <img
                   src={pic2}
                   className=" w-[130px] h-[130px] bg-base-300 mx-auto mt-6 border-[2px] border-[#1572d3] rounded-full"
                   alt=""
                 /> */}
 
-                <h3 className="text-center mt-2 font-semibold text-xl">
-                  {comment?.user?.name}
-                </h3>
-                <Rating
-                  className=" mx-auto mt-3"
-                  style={{ maxWidth: 100 }}
-                  value={comment?.rating}
-                  readOnly
-                />
-                <p className=" text-center mt-3 mx-3  ">“{comment?.comment}”</p>
-              </div>
-            </SwiperSlide>
-          </>
+              <h3 className="text-center mt-2 font-semibold text-xl">
+                {comment?.user?.name}
+              </h3>
+              <Rating
+                className=" mx-auto mt-3"
+                style={{ maxWidth: 100 }}
+                value={comment?.rating}
+                readOnly
+              />
+              <p className=" text-center mt-3 mx-3  ">“{comment?.comment}”</p>
+            </div>
+          </SwiperSlide>
         ))}
       </Swiper>
     </div>

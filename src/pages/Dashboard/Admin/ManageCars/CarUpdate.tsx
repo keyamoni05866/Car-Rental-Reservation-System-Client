@@ -10,9 +10,9 @@ import { toast } from "sonner";
 const img_hosting_token = import.meta.env.VITE_image_upload_token;
 const CarUpdate = () => {
   const { id } = useParams();
-  const { data: cars, isLoading } = useGetCarsQuery({});
+  const { data, isLoading } = useGetCarsQuery({});
   const [updateCar] = useUpdateCarMutation();
-  const car = cars?.data?.find((item: TCar) => item._id === id);
+
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const { register, handleSubmit } = useForm<TCar>();
 
@@ -23,7 +23,13 @@ const CarUpdate = () => {
       </div>
     );
   }
+  const {
+    result: cars = [],
+    totalPages = 0,
+    currentPage = 1,
+  } = data?.data || {};
 
+  const car = cars?.find((item: TCar) => item._id === id);
   const handleUpdate: SubmitHandler<TUpdateCar> = async (data) => {
     // if (data.image) {
 

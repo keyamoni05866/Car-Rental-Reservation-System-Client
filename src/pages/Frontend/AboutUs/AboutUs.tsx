@@ -6,7 +6,7 @@ import Fleet from "./Fleet";
 import Teams from "./Teams";
 const AboutUs = () => {
   return (
-    <div className="min-h-screen mb-20 mt-3 px-3 ">
+    <div className="min-h-screen mb-20 lg:mt-20 px-3 ">
       <div className="lg:flex">
         <div className="lg:w-[50%]">
           <img src={aboutImage} alt="" className="w-[550px] h-[450px]" />
@@ -40,7 +40,7 @@ const AboutUs = () => {
         </div>
       </div>
       <div className="lg:flex lg:justify-between  lg:mt-0 mt-10 lg:px-0 px-5">
-        <div className="shadow-lg lg:w-[300px] lg:h-[240px] mb-10 p-8 text-justify rounded-lg bg-base-200">
+        <div className="shadow-lg lg:w-[300px] lg:h-[260px] mb-10 p-8 text-justify rounded-lg bg-base-200">
           <p>
             <span className="font-semibold me-2">Founding Year:</span>
             Established in 2024, our car rental service has grown from a small,
@@ -50,7 +50,7 @@ const AboutUs = () => {
             <span className="font-semibold ">Founded:</span> 2024
           </p>
         </div>
-        <div className="shadow-lg lg:w-[300px] lg:h-[240px] mb-8 p-8 text-justify rounded-lg bg-base-200">
+        <div className="shadow-lg lg:w-[300px] lg:h-[260px] mb-8 p-8 text-justify rounded-lg bg-base-200">
           <p>
             <span className="font-semibold me-2">Mission:</span>
             Our mission is to provide affordable, reliable, and convenient car
@@ -59,7 +59,7 @@ const AboutUs = () => {
             easy-to-use platform and high-quality customer service.
           </p>
         </div>
-        <div className="shadow-lg lg:w-[300px] lg:h-[240px] mb-8 p-8 text-justify rounded-lg bg-base-200">
+        <div className="shadow-lg lg:w-[300px] lg:h-[260px] mb-8 p-8 text-justify rounded-lg bg-base-200">
           <p>
             <span className="font-semibold me-2">Vision:</span>
             We envision becoming the leading car rental service globally, known
@@ -67,7 +67,7 @@ const AboutUs = () => {
             and a vast fleet of vehicles that cater to every need.
           </p>
         </div>
-        <div className="shadow-lg w-[300px] h-[240px] p-8 text-justify rounded-lg bg-base-200">
+        <div className="shadow-lg w-[300px] h-[260px] p-8 text-justify rounded-lg bg-base-200">
           <p>
             <span className="font-semibold me-2">Our Values:</span>
             At CityCar Rental, we go beyond just providing cars. We are

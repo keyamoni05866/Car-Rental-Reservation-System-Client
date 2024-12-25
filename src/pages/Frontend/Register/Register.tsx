@@ -55,7 +55,7 @@ const Register = () => {
   };
 
   return (
-    <div className="   mt-14 mb-16  p-5 lg:px-16">
+    <div className="   mt-28 mb-16  p-5 lg:px-16">
       <div className=" min-h-full  rounded-lg lg:p-12  custom-background  mx-auto ">
         <div className="lg:flex  w-full  ">
           <div className=" rounded-s-lg hidden sm:block   w-full  lg:w-[50%]  shadow-2xl">

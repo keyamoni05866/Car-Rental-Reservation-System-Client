@@ -45,7 +45,7 @@ const Cars = () => {
   };
 
   return (
-    <div className=" min-h-screen mb-20 mt-10 px-3 ">
+    <div className=" min-h-screen mb-20 mt-28 px-3 ">
       <div className="lg:flex justify-between w-full gap-5 ">
         <div className=" lg:px-0 px-3  ">
           <div className="flex  justify-between mb-5 mt-5">
@@ -231,23 +231,6 @@ const Cars = () => {
             currentPage={currentPage}
             totalPages={totalPages}
           />
-          {/* <div style={{ marginTop: "20px" }}>
-            <button
-              disabled={currentPage === 1}
-              onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-            >
-              Previous
-            </button>
-            <span style={{ margin: "0 10px" }}>
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              disabled={currentPage === totalPages}
-              onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
-            >
-              Next
-            </button>
-          </div> */}
         </div>
       </div>
     </div>

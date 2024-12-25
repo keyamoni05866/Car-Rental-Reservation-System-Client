@@ -46,7 +46,7 @@ const Booking = () => {
   if (!selectedCar || selectedCar.length === 0) {
     return (
       <>
-        <div className="lg:flex justify-between items-center  gap-x-2 px-2 rounded-xl  mx-auto lg:w-[70%]  mt-3 shadow-sm p-4">
+        <div className="lg:flex justify-between items-center  gap-x-2 px-2 rounded-xl  mx-auto lg:w-[70%]  mt-28 shadow-sm p-4">
           <label className="input   flex items-center ">
             <input
               value={name}
@@ -118,7 +118,7 @@ const Booking = () => {
   }
 
   return (
-    <div className="ms-2 mt-5 mb-20">
+    <div className="ms-2 mt-28 mb-20 ">
       <h4 className="lg:pb-0 pb-3 text-center">
         <span className="primary-color lg:text-[40px] text-2xl font-bold text-center">
           {" "}

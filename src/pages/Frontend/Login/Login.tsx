@@ -58,7 +58,7 @@ const Login = () => {
     toast.success("Demo User Credentials autofilled", { duration: 2000 });
   };
   return (
-    <div className=" mx-auto lg:max-w-screen-lg p-10 lg:p-0  ">
+    <div className=" mx-auto lg:max-w-screen-lg p-10 lg:p-0 mt-20  ">
       <div className="lg:flex  lg:items-center lg:justify-between lg:gap-5 ">
         {/* image */}
         <div className="lg:w-[60%]">
@@ -75,14 +75,14 @@ const Login = () => {
                 <button
                   type="button"
                   onClick={handleUserSetValue}
-                  className="px-3 py-1 border border-gray-500 rounded-2xl text-md hover:bg-[#051c34] hover:text-white  "
+                  className="px-2 py-1 border border-gray-500 rounded-2xl text-md hover:bg-[#051c34] hover:text-white  "
                 >
                   User Credentials
                 </button>
                 <button
                   type="button"
                   onClick={handleAdminSetValue}
-                  className="px-3 py-1 bg-[#155ba7] hover:bg-[#193e68] text-white border rounded-2xl text-md"
+                  className="px-2 py-1 bg-[#155ba7] hover:bg-[#193e68] text-white border rounded-2xl text-md"
                 >
                   Admin Credentials
                 </button>

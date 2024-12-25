@@ -1,6 +1,6 @@
 const PrivacyPolicy = () => {
   return (
-    <div className="mt-4 mb-20 lg:ps-44 w-full p-8 lg:p-0">
+    <div className="mt-28 mb-20 lg:ps-44 w-full p-8 lg:p-0">
       <h4 className="lg:text-2xl font-bold text-center mb-5  ">
         Privacy Policy for{" "}
         <span className="primary-color ms-1">CityCar Rental!!</span>
